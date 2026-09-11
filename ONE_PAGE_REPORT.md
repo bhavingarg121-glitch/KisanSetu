@@ -46,12 +46,12 @@ The proposed system consists of an **Admin/Security Command Dashboard** and an *
 ---
 
 ## Technology Stack
-* **Frontend:** HTML, CSS, JavaScript / React 19 + Vite
-* **Backend:** Python FastAPI, Uvicorn ASGI Server
-* **Database:** Supabase (PostgreSQL) / Firebase Firestore
-* **AI / ML:** Python PyTorch, NumPy, Scikit-Learn
-* **Hardware (Optional):** ESP32, IR / Ultrasonic counters, CCTV camera feeds
-* **Deployment:** Cloud-based deployment / Local command center edge node
+* **Frontend:** HTML5, Vanilla CSS Design System, JavaScript, **React 19 + Vite**
+* **Backend:** **Python FastAPI**, Uvicorn ASGI Server
+* **Database:** **Supabase (PostgreSQL)** & **Firebase Firestore** (with zero-config in-memory emulator fallback)
+* **AI / ML:** **Python PyTorch**, NumPy, Scikit-Learn (CSRNet Density Estimation, Optical Flow, and LSTM Forecaster)
+* **Hardware (Optional):** ESP32, IR / Ultrasonic counters, RTSP CCTV camera streams
+* **Deployment:** Cloud-based deployment / local command center edge node
 
 ---
 

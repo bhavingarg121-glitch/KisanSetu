@@ -99,18 +99,18 @@ export function Navbar({ activeTab, setActiveTab }) {
           <div>
             <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
               <span className="font-display" style={{ fontSize: '1.25rem', fontWeight: 700, letterSpacing: '0.04em', color: '#f8fafc' }}>
-                CROWD<span style={{ color: '#00f0ff' }}>IQ</span>
+                CROWD<span style={{ color: '#00f0ff' }}>PULSE</span>
               </span>
               <span className="cyber-badge cyber-badge-emerald" style={{ fontSize: '0.65rem' }}>
                 <span style={{ width: '6px', height: '6px', borderRadius: '50%', background: '#10b981', display: 'inline-block' }}></span>
                 ONLINE
               </span>
               <span className="cyber-badge cyber-badge-purple" style={{ fontSize: '0.62rem' }}>
-                FastAPI + Firebase + PyTorch AI
+                FastAPI + PyTorch AI
               </span>
             </div>
             <div className="font-mono" style={{ fontSize: '0.72rem', color: '#94a3b8' }}>
-              AI Crowd Management & Stampede Prevention Platform
+              AI Crowd Management & Safety System
             </div>
           </div>
         </div>
