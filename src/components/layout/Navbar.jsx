@@ -86,7 +86,8 @@ export function Navbar({ activeTab, setActiveTab }) {
       )}
 
       <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '1rem' }}>
-        {/* Logo & Status         <div style={{ display: 'flex', alignItems: 'center', gap: '0.85rem' }}>
+        {/* Logo & Status */}
+        <div style={{ display: 'flex', alignItems: 'center', gap: '0.85rem' }}>
           <div style={{ 
             width: '38px', 
             height: '38px', 
