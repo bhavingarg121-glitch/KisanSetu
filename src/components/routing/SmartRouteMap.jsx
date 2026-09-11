@@ -107,7 +107,7 @@ export function SmartRouteMap() {
         }}>
           <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '0.6rem' }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: '0.4rem' }}>
-              <CheckCircle size={16} color="#059669" />
+              <CheckCircle2 size={16} color="#059669" />
               <span style={{ fontSize: '0.82rem', fontWeight: 700, color: '#059669' }}>
                 AI RECOMMENDED RELIEF CORRIDOR
               </span>
