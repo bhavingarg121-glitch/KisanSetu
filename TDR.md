@@ -1,4 +1,4 @@
-# TECHNICAL DESIGN REPORT (TDR / TRD)
+# TECHNICAL DESIGN REPORT (TDR)
 
 ## Project Title
 **CrowdPulse: AI-Powered Crowd Management and Safety System**
