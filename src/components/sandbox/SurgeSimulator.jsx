@@ -53,12 +53,12 @@ export function SurgeSimulator() {
       <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '1.25rem', flexWrap: 'wrap', gap: '0.75rem' }}>
         <div>
           <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-            <Sliders size={18} color="#a855f7" />
-            <span className="font-display" style={{ fontSize: '1.15rem', fontWeight: 700, color: '#f8fafc' }}>
+            <Sliders size={18} color="var(--accent-gold)" />
+            <span className="font-display" style={{ fontSize: '1.15rem', fontWeight: 700, color: 'var(--text-primary)' }}>
               CHAOS & CROWD SURGE SIMULATION SANDBOX
             </span>
           </div>
-          <p style={{ fontSize: '0.75rem', color: '#94a3b8' }}>
+          <p style={{ fontSize: '0.75rem', color: 'var(--text-secondary)' }}>
             Stress test the AI Stampede Prevention algorithms by injecting synthetic surges and observing response telemetry.
           </p>
         </div>
@@ -84,30 +84,30 @@ export function SurgeSimulator() {
               key={p.id}
               onClick={() => triggerSimulationPreset(p.id)}
               style={{
-                background: isActive ? `${p.color}15` : 'rgba(15, 23, 42, 0.6)',
+                background: isActive ? `${p.color}15` : 'var(--bg-card)',
                 border: `1.5px solid ${isActive ? p.color : 'var(--border-subtle)'}`,
-                borderRadius: '10px',
-                padding: '1.1rem',
+                borderRadius: '16px',
+                padding: '1.25rem',
                 cursor: 'pointer',
                 transition: 'all 0.2s ease',
-                boxShadow: isActive ? `0 0 16px ${p.color}30` : 'none',
+                boxShadow: isActive ? `0 0 16px ${p.color}30` : 'var(--shadow-glass)',
                 position: 'relative'
               }}
             >
               <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '0.5rem' }}>
-                <div style={{ width: '32px', height: '32px', borderRadius: '8px', background: `${p.color}20`, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                  <Icon size={17} color={p.color} />
+                <div style={{ width: '36px', height: '36px', borderRadius: '10px', background: `${p.color}20`, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                  <Icon size={18} color={p.color} />
                 </div>
                 <span className="cyber-badge" style={{ background: `${p.color}20`, color: p.color, border: `1px solid ${p.color}40`, fontSize: '0.65rem' }}>
                   {p.badge}
                 </span>
               </div>
 
-              <div style={{ fontSize: '0.95rem', fontWeight: 700, color: '#f8fafc', marginBottom: '0.3rem' }}>
+              <div style={{ fontSize: '0.95rem', fontWeight: 700, color: 'var(--text-primary)', marginBottom: '0.3rem' }}>
                 {p.name}
               </div>
 
-              <p style={{ fontSize: '0.74rem', color: '#94a3b8', lineHeight: 1.35 }}>
+              <p style={{ fontSize: '0.76rem', color: 'var(--text-secondary)', lineHeight: 1.4 }}>
                 {p.desc}
               </p>
 
@@ -122,13 +122,13 @@ export function SurgeSimulator() {
       </div>
 
       {/* Real-time Influx Slider */}
-      <div style={{ background: 'rgba(10, 17, 32, 0.75)', border: '1px solid var(--border-subtle)', borderRadius: '10px', padding: '1.25rem' }}>
+      <div style={{ background: 'var(--bg-card)', border: '1px solid var(--border-subtle)', borderRadius: '16px', padding: '1.25rem', boxShadow: 'var(--shadow-glass)' }}>
         <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '0.75rem' }}>
           <div>
-            <span className="font-mono" style={{ fontSize: '0.75rem', color: '#38bdf8', fontWeight: 700 }}>
+            <span className="font-mono" style={{ fontSize: '0.75rem', color: 'var(--accent-gold)', fontWeight: 700 }}>
               CONTINUOUS INFLUX MULTIPLIER: {influxMultiplier.toFixed(1)}x
             </span>
-            <div style={{ fontSize: '0.72rem', color: '#94a3b8' }}>
+            <div style={{ fontSize: '0.72rem', color: 'var(--text-secondary)' }}>
               Directly scales turnstile admission velocity and arrival stochastic waves.
             </div>
           </div>
@@ -145,10 +145,10 @@ export function SurgeSimulator() {
           step="0.1"
           value={influxMultiplier}
           onChange={(e) => setInfluxMultiplier(parseFloat(e.target.value))}
-          style={{ width: '100%', height: '8px', accentColor: '#38bdf8', cursor: 'pointer' }}
+          style={{ width: '100%', height: '8px', accentColor: 'var(--accent-gold)', cursor: 'pointer' }}
         />
 
-        <div style={{ display: 'flex', justifyContent: 'space-between', marginTop: '0.4rem', fontSize: '0.68rem', color: '#64748b', fontFamily: 'var(--font-mono)' }}>
+        <div style={{ display: 'flex', justifyContent: 'space-between', marginTop: '0.4rem', fontSize: '0.68rem', color: 'var(--text-secondary)', fontFamily: 'var(--font-mono)' }}>
           <span>0.5x (Trickle)</span>
           <span>1.0x (Standard)</span>
           <span>2.5x (Peak Rush)</span>

@@ -25,17 +25,17 @@ export function AttendeePortal() {
       <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '1.25rem', flexWrap: 'wrap', gap: '0.5rem' }}>
         <div>
           <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-            <Smartphone size={18} color="#10b981" />
-            <span className="font-display" style={{ fontSize: '1.15rem', fontWeight: 700, color: '#f8fafc' }}>
+            <Smartphone size={18} color="var(--accent-gold)" />
+            <span className="font-display" style={{ fontSize: '1.15rem', fontWeight: 700, color: 'var(--text-primary)' }}>
               ATTENDEE MOBILE PASS & SAFE WAYFINDING COMPANION
             </span>
           </div>
-          <p style={{ fontSize: '0.75rem', color: '#94a3b8' }}>
+          <p style={{ fontSize: '0.75rem', color: 'var(--text-secondary)' }}>
             Mobile web app companion distributed to ticket holders via SMS/WhatsApp for frictionless entry and stampede evasion.
           </p>
         </div>
 
-        <span className="cyber-badge cyber-badge-emerald" style={{ fontSize: '0.72rem' }}>
+        <span className="cyber-badge cyber-badge-gold" style={{ fontSize: '0.72rem' }}>
           Attendee Viewport: Mobile (390 x 780)
         </span>
       </div>
@@ -47,7 +47,7 @@ export function AttendeePortal() {
           background: '#0a0f1d', 
           border: '4px solid #1e293b', 
           borderRadius: '36px', 
-          boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.7), 0 0 25px rgba(56, 189, 248, 0.2)',
+          boxShadow: 'var(--shadow-hover)',
           overflow: 'hidden',
           display: 'flex',
           flexDirection: 'column'
@@ -86,7 +86,7 @@ export function AttendeePortal() {
             <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
               <div>
                 <div className="font-display" style={{ fontSize: '1rem', fontWeight: 700, color: '#f8fafc' }}>
-                  METRO STADIUM GUIDE
+                  CROWDPULSE COMPANION
                 </div>
                 <div style={{ fontSize: '0.72rem', color: '#94a3b8' }}>Welcome, Elena Rostova</div>
               </div>
@@ -100,17 +100,17 @@ export function AttendeePortal() {
           <div style={{ padding: '1rem', display: 'flex', flexDirection: 'column', gap: '0.85rem', overflowY: 'auto', maxHeight: '520px' }}>
             {/* Digital Pass Card */}
             <div style={{ 
-              background: 'linear-gradient(135deg, #0f172a, #1e293b)', 
+              background: 'linear-gradient(135deg, rgba(217, 119, 6, 0.22), #0f172a)', 
               borderRadius: '16px', 
               padding: '1rem', 
-              border: '1px solid #38bdf8',
-              boxShadow: '0 8px 20px rgba(56, 189, 248, 0.15)'
+              border: '1px solid #d97706',
+              boxShadow: '0 8px 20px rgba(217, 119, 6, 0.15)'
             }}>
               <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.5rem' }}>
-                <span className="font-mono" style={{ fontSize: '0.7rem', color: '#00f0ff', fontWeight: 700 }}>
+                <span className="font-mono" style={{ fontSize: '0.7rem', color: '#f59e0b', fontWeight: 700 }}>
                   TKT-8841-VIP
                 </span>
-                <span className="cyber-badge cyber-badge-blue" style={{ fontSize: '0.6rem' }}>
+                <span className="cyber-badge cyber-badge-gold" style={{ fontSize: '0.6rem' }}>
                   VIP ACCESS
                 </span>
               </div>

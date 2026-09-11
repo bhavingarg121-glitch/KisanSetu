@@ -16,8 +16,8 @@ export function AlertsPanel({ onDispatchClick }) {
     <div className="glass-panel" style={{ padding: '1.25rem', marginBottom: '1.5rem' }}>
       <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '1rem', flexWrap: 'wrap', gap: '0.5rem' }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-          <Bell size={18} color="#f59e0b" />
-          <span className="font-display" style={{ fontSize: '1.1rem', fontWeight: 700, color: '#f8fafc' }}>
+          <Bell size={18} color="var(--accent-gold)" />
+          <span className="font-display" style={{ fontSize: '1.1rem', fontWeight: 700, color: 'var(--text-primary)' }}>
             REAL-TIME INCIDENT & SURGE ALERTS ({alerts.length})
           </span>
         </div>
@@ -31,8 +31,9 @@ export function AlertsPanel({ onDispatchClick }) {
               style={{
                 fontSize: '0.72rem',
                 padding: '0.25rem 0.55rem',
-                background: filter === f ? 'rgba(56, 189, 248, 0.2)' : 'transparent',
-                borderColor: filter === f ? '#38bdf8' : 'var(--border-subtle)'
+                background: filter === f ? 'rgba(217, 119, 6, 0.18)' : 'transparent',
+                borderColor: filter === f ? 'var(--accent-gold)' : 'var(--border-subtle)',
+                color: filter === f ? 'var(--accent-gold)' : 'var(--text-primary)'
               }}
             >
               {f}
@@ -43,7 +44,7 @@ export function AlertsPanel({ onDispatchClick }) {
             <button
               onClick={clearAllAlerts}
               className="cyber-btn"
-              style={{ fontSize: '0.72rem', padding: '0.25rem 0.55rem', color: '#94a3b8' }}
+              style={{ fontSize: '0.72rem', padding: '0.25rem 0.55rem', color: 'var(--text-secondary)' }}
               title="Clear all alerts"
             >
               <Trash2 size={13} />
@@ -53,10 +54,10 @@ export function AlertsPanel({ onDispatchClick }) {
       </div>
 
       {filteredAlerts.length === 0 ? (
-        <div style={{ textAlign: 'center', padding: '2rem 1rem', color: '#64748b' }}>
-          <ShieldCheck size={32} color="#10b981" style={{ margin: '0 auto 0.5rem' }} />
-          <div style={{ fontSize: '0.85rem', color: '#94a3b8' }}>No active incident alerts in this filter.</div>
-          <div style={{ fontSize: '0.75rem' }}>All perimeter sectors are operating within standard tolerance.</div>
+        <div style={{ textAlign: 'center', padding: '2rem 1rem', color: 'var(--text-secondary)' }}>
+          <ShieldCheck size={32} color="#059669" style={{ margin: '0 auto 0.5rem' }} />
+          <div style={{ fontSize: '0.85rem', color: 'var(--text-primary)', fontWeight: 600 }}>No active incident alerts in this filter.</div>
+          <div style={{ fontSize: '0.75rem', color: 'var(--text-secondary)' }}>All perimeter sectors are operating within standard tolerance.</div>
         </div>
       ) : (
         <div style={{ display: 'flex', flexDirection: 'column', gap: '0.65rem', maxHeight: '340px', overflowY: 'auto', paddingRight: '4px' }}>
@@ -69,9 +70,9 @@ export function AlertsPanel({ onDispatchClick }) {
               <div
                 key={alert.id}
                 style={{
-                  background: isCrit ? 'rgba(239, 68, 68, 0.08)' : 'rgba(15, 23, 42, 0.65)',
+                  background: isCrit ? 'rgba(239, 68, 68, 0.08)' : 'rgba(255, 255, 255, 0.55)',
                   border: `1px solid ${isCrit ? '#ef444460' : isWarn ? '#f59e0b50' : 'var(--border-subtle)'}`,
-                  borderRadius: '8px',
+                  borderRadius: '12px',
                   padding: '0.75rem 1rem',
                   display: 'flex',
                   alignItems: 'flex-start',
@@ -85,10 +86,10 @@ export function AlertsPanel({ onDispatchClick }) {
                     <span className={`cyber-badge ${badgeClass}`}>
                       {alert.severity}
                     </span>
-                    <span className="font-mono" style={{ fontSize: '0.72rem', color: '#94a3b8' }}>
+                    <span className="font-mono" style={{ fontSize: '0.72rem', color: 'var(--text-secondary)' }}>
                       {alert.time}
                     </span>
-                    <span style={{ fontSize: '0.78rem', color: '#38bdf8', fontWeight: 600 }}>
+                    <span style={{ fontSize: '0.78rem', color: 'var(--accent-gold)', fontWeight: 600 }}>
                       [{alert.zoneName}]
                     </span>
                     {alert.acknowledged && (
@@ -98,11 +99,11 @@ export function AlertsPanel({ onDispatchClick }) {
                     )}
                   </div>
 
-                  <div style={{ fontSize: '0.85rem', fontWeight: 600, color: '#f8fafc', marginBottom: '0.2rem' }}>
+                  <div style={{ fontSize: '0.85rem', fontWeight: 600, color: 'var(--text-primary)', marginBottom: '0.2rem' }}>
                     {alert.title}
                   </div>
 
-                  <div style={{ fontSize: '0.78rem', color: '#94a3b8', lineHeight: 1.35 }}>
+                  <div style={{ fontSize: '0.78rem', color: 'var(--text-secondary)', lineHeight: 1.35 }}>
                     {alert.message}
                   </div>
                 </div>

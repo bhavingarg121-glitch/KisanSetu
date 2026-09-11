@@ -1,52 +1,53 @@
 import React from 'react';
-import { LineChart, TrendingUp, AlertTriangle, Clock, Calendar, Zap } from 'lucide-react';
+import { TrendingUp, Clock, AlertCircle, Zap } from 'lucide-react';
 import { useCrowdData } from '../../context/CrowdDataContext';
+import { useTheme } from '../../context/ThemeContext';
 
 export function PeakForecastChart() {
-  const { predictiveCurve, venueCapacity, totalHeadcount } = useCrowdData();
+  const { predictiveCurve, venueCapacity } = useCrowdData();
+  const { isGoldenAura } = useTheme();
 
-  // SVG chart dimensions
-  const width = 760;
-  const height = 240;
-  const padding = { top: 25, right: 30, bottom: 40, left: 55 };
+  if (!predictiveCurve || predictiveCurve.length === 0) return null;
 
+  // Chart layout dimensions
+  const width = 800;
+  const height = 260;
+  const padding = { top: 30, right: 40, bottom: 40, left: 60 };
   const graphW = width - padding.left - padding.right;
   const graphH = height - padding.top - padding.bottom;
 
-  // Max value on Y axis
-  const maxY = venueCapacity * 1.1;
+  const maxY = Math.max(...predictiveCurve.map(p => p.projectedCount), venueCapacity * 1.05);
 
-  // Build points for SVG polyline
-  const points = predictiveCurve.map((item, index) => {
-    const x = padding.left + (index / (predictiveCurve.length - 1)) * graphW;
-    const y = padding.top + graphH - (item.projectedCount / maxY) * graphH;
-    return { ...item, x, y };
+  const points = predictiveCurve.map((p, idx) => {
+    const x = padding.left + (idx / (predictiveCurve.length - 1)) * graphW;
+    const y = padding.top + graphH - (p.projectedCount / maxY) * graphH;
+    return { ...p, x, y };
   });
 
   const polylineStr = points.map(p => `${p.x},${p.y}`).join(' ');
-
-  // Danger threshold line Y
-  const dangerY = padding.top + graphH - (venueCapacity * 0.9 / maxY) * graphH;
+  const dangerY = padding.top + graphH - ((venueCapacity * 0.9) / maxY) * graphH;
 
   // Peak item
   const peakItem = [...predictiveCurve].sort((a, b) => b.projectedCount - a.projectedCount)[0];
+
+  const primaryAccent = isGoldenAura ? '#d97706' : '#a855f7';
 
   return (
     <div className="glass-panel" style={{ padding: '1.25rem', marginBottom: '1.5rem' }}>
       <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '1rem', flexWrap: 'wrap', gap: '0.75rem' }}>
         <div>
           <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-            <TrendingUp size={18} color="#a855f7" />
-            <span className="font-display" style={{ fontSize: '1.15rem', fontWeight: 700, color: '#f8fafc' }}>
+            <TrendingUp size={18} color={primaryAccent} />
+            <span className="font-display" style={{ fontSize: '1.15rem', fontWeight: 700, color: 'var(--text-primary)' }}>
               AI PREDICTIVE CROWD SURGE & PEAK FORECASTING
             </span>
           </div>
-          <p style={{ fontSize: '0.75rem', color: '#94a3b8' }}>
+          <p style={{ fontSize: '0.75rem', color: 'var(--text-secondary)' }}>
             Multi-factor time-series projection modeling turnstile rates, transit schedules, and event timeline milestones.
           </p>
         </div>
 
-        <div className="cyber-badge cyber-badge-purple" style={{ fontSize: '0.75rem' }}>
+        <div className={`cyber-badge ${isGoldenAura ? 'cyber-badge-gold' : 'cyber-badge-purple'}`} style={{ fontSize: '0.75rem' }}>
           <Zap size={13} />
           LSTM / Neural Time-Series Active
         </div>
@@ -54,33 +55,33 @@ export function PeakForecastChart() {
 
       {/* KPI callout row */}
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '0.75rem', marginBottom: '1.25rem' }}>
-        <div style={{ background: 'rgba(15, 23, 42, 0.65)', padding: '0.8rem', borderRadius: '8px', border: '1px solid var(--border-subtle)' }}>
-          <div className="font-mono" style={{ fontSize: '0.68rem', color: '#94a3b8' }}>PROJECTED PEAK WINDOW</div>
-          <div className="font-mono" style={{ fontSize: '1.15rem', fontWeight: 700, color: '#a855f7' }}>
+        <div style={{ background: 'var(--bg-card)', padding: '0.8rem', borderRadius: '12px', border: '1px solid var(--border-subtle)' }}>
+          <div className="font-mono" style={{ fontSize: '0.68rem', color: 'var(--text-secondary)' }}>PROJECTED PEAK WINDOW</div>
+          <div className="font-mono" style={{ fontSize: '1.15rem', fontWeight: 700, color: primaryAccent }}>
             {peakItem?.hour || '21:00'} - 22:30
           </div>
-          <div style={{ fontSize: '0.72rem', color: '#64748b' }}>Headline Event & Finale Surge</div>
+          <div style={{ fontSize: '0.72rem', color: 'var(--text-secondary)' }}>Headline Event & Finale Surge</div>
         </div>
 
-        <div style={{ background: 'rgba(15, 23, 42, 0.65)', padding: '0.8rem', borderRadius: '8px', border: '1px solid var(--border-subtle)' }}>
-          <div className="font-mono" style={{ fontSize: '0.68rem', color: '#94a3b8' }}>ESTIMATED PEAK ATTENDANCE</div>
-          <div className="font-mono" style={{ fontSize: '1.15rem', fontWeight: 700, color: '#f8fafc' }}>
-            {peakItem?.projectedCount.toLocaleString()} <span style={{ fontSize: '0.75rem', color: '#f87171' }}>({peakItem?.occupancyPct}%)</span>
+        <div style={{ background: 'var(--bg-card)', padding: '0.8rem', borderRadius: '12px', border: '1px solid var(--border-subtle)' }}>
+          <div className="font-mono" style={{ fontSize: '0.68rem', color: 'var(--text-secondary)' }}>ESTIMATED PEAK ATTENDANCE</div>
+          <div className="font-mono" style={{ fontSize: '1.15rem', fontWeight: 700, color: 'var(--text-primary)' }}>
+            {peakItem?.projectedCount.toLocaleString()} <span style={{ fontSize: '0.75rem', color: '#dc2626' }}>({peakItem?.occupancyPct}%)</span>
           </div>
-          <div style={{ fontSize: '0.72rem', color: '#64748b' }}>Capacity Threshold: {venueCapacity.toLocaleString()}</div>
+          <div style={{ fontSize: '0.72rem', color: 'var(--text-secondary)' }}>Capacity Threshold: {venueCapacity.toLocaleString()}</div>
         </div>
 
-        <div style={{ background: 'rgba(15, 23, 42, 0.65)', padding: '0.8rem', borderRadius: '8px', border: '1px solid var(--border-subtle)' }}>
-          <div className="font-mono" style={{ fontSize: '0.68rem', color: '#94a3b8' }}>PRE-EMPTIVE ACTION</div>
-          <div style={{ fontSize: '0.82rem', fontWeight: 600, color: '#fbbf24' }}>
+        <div style={{ background: 'var(--bg-card)', padding: '0.8rem', borderRadius: '12px', border: '1px solid var(--border-subtle)' }}>
+          <div className="font-mono" style={{ fontSize: '0.68rem', color: 'var(--text-secondary)' }}>PRE-EMPTIVE ACTION</div>
+          <div style={{ fontSize: '0.82rem', fontWeight: 600, color: 'var(--accent-gold)' }}>
             Activate West Relief Gate 45m Prior
           </div>
-          <div style={{ fontSize: '0.72rem', color: '#64748b' }}>Prevents Stage Floor Choke Wave</div>
+          <div style={{ fontSize: '0.72rem', color: 'var(--text-secondary)' }}>Prevents Stage Floor Choke Wave</div>
         </div>
       </div>
 
       {/* SVG Forecast Chart */}
-      <div style={{ width: '100%', overflowX: 'auto', background: '#070d1a', borderRadius: '10px', padding: '0.5rem', border: '1px solid #1e293b' }}>
+      <div style={{ width: '100%', overflowX: 'auto', background: isGoldenAura ? 'rgba(255, 255, 255, 0.65)' : '#070d1a', borderRadius: '14px', padding: '0.75rem', border: '1px solid var(--border-subtle)' }}>
         <svg viewBox={`0 0 ${width} ${height}`} style={{ width: '100%', height: 'auto', display: 'block' }}>
           {/* Y Axis Grid lines */}
           {[0, 0.25, 0.5, 0.75, 1.0].map((ratio, i) => {
@@ -88,8 +89,8 @@ export function PeakForecastChart() {
             const val = Math.round(maxY * ratio);
             return (
               <g key={i}>
-                <line x1={padding.left} y1={y} x2={width - padding.right} y2={y} stroke="#1e293b" strokeDasharray="3,3" />
-                <text x={padding.left - 8} y={y + 4} fill="#64748b" fontSize="9" textAnchor="end" fontFamily="'JetBrains Mono', monospace">
+                <line x1={padding.left} y1={y} x2={width - padding.right} y2={y} stroke={isGoldenAura ? 'rgba(217, 119, 6, 0.15)' : '#1e293b'} strokeDasharray="3,3" />
+                <text x={padding.left - 8} y={y + 4} fill={isGoldenAura ? '#92400e' : '#64748b'} fontSize="9" textAnchor="end" fontFamily="'JetBrains Mono', monospace">
                   {val.toLocaleString()}
                 </text>
               </g>
@@ -120,7 +121,7 @@ export function PeakForecastChart() {
           <polyline
             points={polylineStr}
             fill="none"
-            stroke="#a855f7"
+            stroke={primaryAccent}
             strokeWidth="3"
             strokeLinecap="round"
             strokeLinejoin="round"
@@ -135,24 +136,25 @@ export function PeakForecastChart() {
                   cx={p.x}
                   cy={p.y}
                   r={isDanger ? 6 : 4}
-                  fill={isDanger ? '#ef4444' : '#a855f7'}
+                  fill={isDanger ? '#dc2626' : primaryAccent}
                   stroke="#ffffff"
                   strokeWidth="2"
                 />
                 <text
                   x={p.x}
                   y={height - 12}
-                  fill="#94a3b8"
+                  fill={isGoldenAura ? '#78350f' : '#94a3b8'}
                   fontSize="10"
                   textAnchor="middle"
                   fontFamily="'JetBrains Mono', monospace"
+                  fontWeight="600"
                 >
                   {p.hour}
                 </text>
                 <text
                   x={p.x}
                   y={p.y - 10}
-                  fill={isDanger ? '#f87171' : '#c084fc'}
+                  fill={isDanger ? '#dc2626' : isGoldenAura ? '#92400e' : '#c084fc'}
                   fontSize="9"
                   textAnchor="middle"
                   fontFamily="'JetBrains Mono', monospace"
@@ -166,8 +168,8 @@ export function PeakForecastChart() {
 
           <defs>
             <linearGradient id="forecastGradient" x1="0%" y1="0%" x2="0%" y2="100%">
-              <stop offset="0%" stopColor="#a855f7" stopOpacity="0.35" />
-              <stop offset="100%" stopColor="#a855f7" stopOpacity="0.0" />
+              <stop offset="0%" stopColor={primaryAccent} stopOpacity="0.35" />
+              <stop offset="100%" stopColor={primaryAccent} stopOpacity="0.0" />
             </linearGradient>
           </defs>
         </svg>

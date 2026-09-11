@@ -91,21 +91,21 @@ export function MetricsGrid() {
               </div>
             </div>
 
-            <div className="font-display" style={{ fontSize: '1.65rem', fontWeight: 700, color: '#f8fafc', marginBottom: '0.25rem' }}>
+            <div className="font-display" style={{ fontSize: '1.65rem', fontWeight: 700, color: 'var(--text-primary)', marginBottom: '0.25rem' }}>
               {c.value}
             </div>
 
-            <div style={{ fontSize: '0.75rem', color: '#94a3b8', marginBottom: '0.65rem' }}>
+            <div style={{ fontSize: '0.75rem', color: 'var(--text-secondary)', marginBottom: '0.65rem' }}>
               {c.subtext}
             </div>
 
-            <div style={{ display: 'flex', alignItems: 'center', gap: '0.35rem', paddingTop: '0.5rem', borderTop: '1px solid rgba(255,255,255,0.06)' }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '0.35rem', paddingTop: '0.5rem', borderTop: '1px solid var(--border-subtle)' }}>
               {c.trendPositive ? (
-                <span className="font-mono" style={{ fontSize: '0.72rem', color: '#34d399', display: 'flex', alignItems: 'center', gap: '2px' }}>
+                <span className="font-mono" style={{ fontSize: '0.72rem', color: '#059669', display: 'flex', alignItems: 'center', gap: '2px', fontWeight: 600 }}>
                   ✓ {c.trend}
                 </span>
               ) : (
-                <span className="font-mono" style={{ fontSize: '0.72rem', color: '#f87171', display: 'flex', alignItems: 'center', gap: '2px' }}>
+                <span className="font-mono" style={{ fontSize: '0.72rem', color: '#dc2626', display: 'flex', alignItems: 'center', gap: '2px', fontWeight: 600 }}>
                   ⚠️ {c.trend}
                 </span>
               )}

@@ -20,12 +20,12 @@ export function BottleneckAnalyzer({ onRerouteClick }) {
       <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '1rem', flexWrap: 'wrap', gap: '0.75rem' }}>
         <div>
           <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-            <Gauge size={18} color="#f59e0b" />
-            <span className="font-display" style={{ fontSize: '1.15rem', fontWeight: 700, color: '#f8fafc' }}>
+            <Gauge size={18} color="var(--accent-gold)" />
+            <span className="font-display" style={{ fontSize: '1.15rem', fontWeight: 700, color: 'var(--text-primary)' }}>
               STAMPEDE RISK INDEX (SRI) & BOTTLENECK HEURISTICS
             </span>
           </div>
-          <p style={{ fontSize: '0.75rem', color: '#94a3b8' }}>
+          <p style={{ fontSize: '0.75rem', color: 'var(--text-secondary)' }}>
             Multi-dimensional crowd pressure analysis detecting micro-shockwaves before macroscopic crush hazards occur.
           </p>
         </div>
@@ -40,21 +40,21 @@ export function BottleneckAnalyzer({ onRerouteClick }) {
         {factors.map((f, idx) => {
           const isHigh = f.score >= 70;
           const isMed = f.score >= 40;
-          const barColor = isHigh ? '#ef4444' : isMed ? '#f59e0b' : '#10b981';
+          const barColor = isHigh ? '#dc2626' : isMed ? '#d97706' : '#059669';
 
           return (
-            <div key={idx} style={{ background: 'rgba(15, 23, 42, 0.65)', padding: '0.85rem', borderRadius: '8px', border: '1px solid var(--border-subtle)' }}>
+            <div key={idx} style={{ background: 'var(--bg-card)', padding: '0.85rem', borderRadius: '12px', border: '1px solid var(--border-subtle)' }}>
               <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '0.35rem' }}>
-                <span style={{ fontSize: '0.78rem', fontWeight: 600, color: '#f8fafc' }}>{f.name}</span>
-                <span className="font-mono" style={{ fontSize: '0.7rem', color: '#94a3b8' }}>[{f.weight}]</span>
+                <span style={{ fontSize: '0.78rem', fontWeight: 600, color: 'var(--text-primary)' }}>{f.name}</span>
+                <span className="font-mono" style={{ fontSize: '0.7rem', color: 'var(--text-secondary)' }}>[{f.weight}]</span>
               </div>
 
-              <div style={{ height: '6px', background: '#1e293b', borderRadius: '3px', overflow: 'hidden', marginBottom: '0.4rem' }}>
+              <div style={{ height: '6px', background: 'var(--border-subtle)', borderRadius: '3px', overflow: 'hidden', marginBottom: '0.4rem' }}>
                 <div style={{ height: '100%', width: `${f.score}%`, background: barColor, transition: 'width 0.4s ease' }} />
               </div>
 
               <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-                <span style={{ fontSize: '0.7rem', color: '#64748b' }}>{f.desc}</span>
+                <span style={{ fontSize: '0.7rem', color: 'var(--text-secondary)' }}>{f.desc}</span>
                 <span className="font-mono" style={{ fontSize: '0.75rem', fontWeight: 700, color: barColor }}>{f.score}%</span>
               </div>
             </div>
@@ -64,12 +64,12 @@ export function BottleneckAnalyzer({ onRerouteClick }) {
 
       {/* Sector Bottleneck Vulnerability Table */}
       <div style={{ overflowX: 'auto' }}>
-        <div className="font-mono" style={{ fontSize: '0.72rem', color: '#94a3b8', marginBottom: '0.5rem', letterSpacing: '0.05em' }}>
+        <div className="font-mono" style={{ fontSize: '0.72rem', color: 'var(--text-secondary)', marginBottom: '0.5rem', letterSpacing: '0.05em' }}>
           SECTOR BOTTLENECK RISK RANKING
         </div>
         <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: '0.8rem', textAlign: 'left' }}>
           <thead>
-            <tr style={{ borderBottom: '1px solid #1e293b', color: '#64748b' }}>
+            <tr style={{ borderBottom: '1px solid var(--border-subtle)', color: 'var(--text-secondary)' }}>
               <th style={{ padding: '0.6rem 0.5rem' }}>SECTOR</th>
               <th style={{ padding: '0.6rem 0.5rem' }}>DENSITY</th>
               <th style={{ padding: '0.6rem 0.5rem' }}>VELOCITY</th>
@@ -84,8 +84,8 @@ export function BottleneckAnalyzer({ onRerouteClick }) {
               const isWarn = z.density >= 2.8;
 
               return (
-                <tr key={z.id} style={{ borderBottom: '1px solid rgba(30, 41, 59, 0.5)', background: isCrit ? 'rgba(239, 68, 68, 0.05)' : 'transparent' }}>
-                  <td style={{ padding: '0.65rem 0.5rem', fontWeight: 600, color: '#f8fafc' }}>
+                <tr key={z.id} style={{ borderBottom: '1px solid var(--border-subtle)', background: isCrit ? 'rgba(239, 68, 68, 0.05)' : 'transparent' }}>
+                  <td style={{ padding: '0.65rem 0.5rem', fontWeight: 600, color: 'var(--text-primary)' }}>
                     <div style={{ display: 'flex', alignItems: 'center', gap: '0.4rem' }}>
                       <span className="font-mono" style={{ color: '#64748b', fontSize: '0.75rem' }}>#{idx + 1}</span>
                       {z.name}

@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from 'react';
+import { ThemeProvider } from './context/ThemeContext';
 import { AuthProvider, useAuth } from './context/AuthContext';
 import { CrowdDataProvider, useCrowdData } from './context/CrowdDataContext';
 import { Navbar } from './components/layout/Navbar';
 import { Sidebar } from './components/layout/Sidebar';
 
 // Dashboard components
+import { GoldenAuraHero } from './components/dashboard/GoldenAuraHero';
 import { MetricsGrid } from './components/dashboard/MetricsGrid';
 import { HeatmapCanvas } from './components/dashboard/HeatmapCanvas';
 import { CameraFeedGrid } from './components/dashboard/CameraFeedGrid';
@@ -55,6 +57,7 @@ function MainApp() {
         <main className="workspace-area">
           {activeTab === 'dashboard' && (
             <div>
+              <GoldenAuraHero onNavigate={setActiveTab} />
               <MetricsGrid />
               <HeatmapCanvas />
               <CameraFeedGrid />
@@ -111,10 +114,12 @@ function MainApp() {
 
 export default function App() {
   return (
-    <AuthProvider>
-      <CrowdDataProvider>
-        <MainApp />
-      </CrowdDataProvider>
-    </AuthProvider>
+    <ThemeProvider>
+      <AuthProvider>
+        <CrowdDataProvider>
+          <MainApp />
+        </CrowdDataProvider>
+      </AuthProvider>
+    </ThemeProvider>
   );
 }

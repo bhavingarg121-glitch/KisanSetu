@@ -10,10 +10,14 @@ import {
   Radio, 
   Siren,
   Users,
-  Compass
+  Compass,
+  Sparkles,
+  Sun,
+  Moon
 } from 'lucide-react';
 import { useCrowdData } from '../../context/CrowdDataContext';
 import { useAuth, ROLES } from '../../context/AuthContext';
+import { useTheme } from '../../context/ThemeContext';
 
 export function Navbar({ activeTab, setActiveTab }) {
   const { 
@@ -32,6 +36,7 @@ export function Navbar({ activeTab, setActiveTab }) {
   } = useCrowdData();
 
   const { currentRole, userName, switchRole } = useAuth();
+  const { isGoldenAura, toggleTheme } = useTheme();
   const [timeStr, setTimeStr] = useState('');
   const [showRoleMenu, setShowRoleMenu] = useState(false);
 
@@ -81,35 +86,34 @@ export function Navbar({ activeTab, setActiveTab }) {
       )}
 
       <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '1rem' }}>
-        {/* Logo & Status */}
-        <div style={{ display: 'flex', alignItems: 'center', gap: '0.85rem' }}>
+        {/* Logo & Status         <div style={{ display: 'flex', alignItems: 'center', gap: '0.85rem' }}>
           <div style={{ 
             width: '38px', 
             height: '38px', 
-            borderRadius: '10px', 
-            background: 'linear-gradient(135deg, #0284c7, #0f172a)', 
-            border: '1px solid #38bdf8',
+            borderRadius: '12px', 
+            background: isGoldenAura ? 'var(--accent-gold-gradient)' : 'linear-gradient(135deg, #0284c7, #0f172a)', 
+            border: `1px solid ${isGoldenAura ? 'var(--accent-gold)' : '#38bdf8'}`,
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
-            boxShadow: '0 0 15px rgba(56, 189, 248, 0.4)'
+            boxShadow: isGoldenAura ? 'var(--glow-gold)' : '0 0 15px rgba(56, 189, 248, 0.4)'
           }}>
-            <ShieldAlert size={22} color="#00f0ff" />
+            <ShieldAlert size={22} color="#ffffff" />
           </div>
           <div>
             <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-              <span className="font-display" style={{ fontSize: '1.25rem', fontWeight: 700, letterSpacing: '0.04em', color: '#f8fafc' }}>
-                CROWD<span style={{ color: '#00f0ff' }}>PULSE</span>
+              <span className="font-display" style={{ fontSize: '1.25rem', fontWeight: 800, letterSpacing: '0.04em', color: 'var(--text-primary)' }}>
+                CROWD<span style={{ color: 'var(--accent-gold)' }}>PULSE</span>
               </span>
               <span className="cyber-badge cyber-badge-emerald" style={{ fontSize: '0.65rem' }}>
-                <span style={{ width: '6px', height: '6px', borderRadius: '50%', background: '#10b981', display: 'inline-block' }}></span>
+                <span style={{ width: '6px', height: '6px', borderRadius: '50%', background: '#059669', display: 'inline-block' }}></span>
                 ONLINE
               </span>
-              <span className="cyber-badge cyber-badge-purple" style={{ fontSize: '0.62rem' }}>
+              <span className={`cyber-badge ${isGoldenAura ? 'cyber-badge-gold' : 'cyber-badge-purple'}`} style={{ fontSize: '0.62rem' }}>
                 FastAPI + PyTorch AI
               </span>
             </div>
-            <div className="font-mono" style={{ fontSize: '0.72rem', color: '#94a3b8' }}>
+            <div className="font-mono" style={{ fontSize: '0.72rem', color: 'var(--text-secondary)' }}>
               AI Crowd Management & Safety System
             </div>
           </div>
@@ -118,26 +122,26 @@ export function Navbar({ activeTab, setActiveTab }) {
         {/* Live Telemetry KPI Ticker */}
         <div style={{ display: 'flex', alignItems: 'center', gap: '1.25rem', flexWrap: 'wrap' }}>
           {/* Headcount */}
-          <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem', padding: '0.35rem 0.8rem', background: 'rgba(15, 23, 42, 0.6)', borderRadius: '8px', border: '1px solid var(--border-subtle)' }}>
-            <Users size={16} color="#38bdf8" />
+          <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem', padding: '0.35rem 0.85rem', background: 'var(--bg-card)', borderRadius: '12px', border: '1px solid var(--border-subtle)', boxShadow: 'var(--shadow-glass)' }}>
+            <Users size={16} color="var(--accent-gold)" />
             <div>
-              <div className="font-mono" style={{ fontSize: '0.68rem', color: '#94a3b8' }}>OCCUPANCY</div>
-              <div className="font-mono" style={{ fontSize: '0.9rem', fontWeight: 700, color: '#f8fafc' }}>
-                {totalHeadcount.toLocaleString()} <span style={{ fontSize: '0.75rem', color: '#64748b' }}>/ {venueCapacity.toLocaleString()} ({overallOccupancyPct}%)</span>
+              <div className="font-mono" style={{ fontSize: '0.68rem', color: 'var(--text-secondary)' }}>OCCUPANCY</div>
+              <div className="font-mono" style={{ fontSize: '0.9rem', fontWeight: 700, color: 'var(--text-primary)' }}>
+                {totalHeadcount.toLocaleString()} <span style={{ fontSize: '0.75rem', color: 'var(--text-secondary)' }}>/ {venueCapacity.toLocaleString()} ({overallOccupancyPct}%)</span>
               </div>
             </div>
           </div>
 
           {/* Inflow / Outflow */}
-          <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem', padding: '0.35rem 0.8rem', background: 'rgba(15, 23, 42, 0.6)', borderRadius: '8px', border: '1px solid var(--border-subtle)' }}>
-            <Activity size={16} color="#10b981" />
+          <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem', padding: '0.35rem 0.85rem', background: 'var(--bg-card)', borderRadius: '12px', border: '1px solid var(--border-subtle)', boxShadow: 'var(--shadow-glass)' }}>
+            <Activity size={16} color="#059669" />
             <div>
-              <div className="font-mono" style={{ fontSize: '0.68rem', color: '#94a3b8' }}>FLOW VELOCITY</div>
+              <div className="font-mono" style={{ fontSize: '0.68rem', color: 'var(--text-secondary)' }}>FLOW VELOCITY</div>
               <div className="font-mono" style={{ fontSize: '0.85rem', fontWeight: 700 }}>
-                <span style={{ color: '#10b981' }}>+{turnstileStats.entriesPerMin}</span>
-                <span style={{ color: '#64748b', margin: '0 4px' }}>/</span>
-                <span style={{ color: '#f87171' }}>-{turnstileStats.exitsPerMin}</span>
-                <span style={{ fontSize: '0.68rem', color: '#64748b', marginLeft: '3px' }}>pax/m</span>
+                <span style={{ color: '#059669' }}>+{turnstileStats.entriesPerMin}</span>
+                <span style={{ color: 'var(--text-secondary)', margin: '0 4px' }}>/</span>
+                <span style={{ color: '#dc2626' }}>-{turnstileStats.exitsPerMin}</span>
+                <span style={{ fontSize: '0.68rem', color: 'var(--text-secondary)', marginLeft: '3px' }}>pax/m</span>
               </div>
             </div>
           </div>
@@ -148,9 +152,10 @@ export function Navbar({ activeTab, setActiveTab }) {
             alignItems: 'center', 
             gap: '0.6rem', 
             padding: '0.35rem 0.85rem', 
-            background: compositeSriResult.sri >= 75 ? 'rgba(239, 68, 68, 0.2)' : compositeSriResult.sri >= 45 ? 'rgba(245, 158, 11, 0.18)' : 'rgba(16, 185, 129, 0.15)', 
-            borderRadius: '8px', 
-            border: `1px solid ${compositeSriResult.color}` 
+            background: compositeSriResult.sri >= 75 ? 'rgba(220, 38, 38, 0.15)' : compositeSriResult.sri >= 45 ? 'rgba(217, 119, 6, 0.15)' : 'rgba(5, 150, 105, 0.12)', 
+            borderRadius: '12px', 
+            border: `1px solid ${compositeSriResult.color}`,
+            boxShadow: 'var(--shadow-glass)'
           }}>
             <Radio size={16} color={compositeSriResult.color} className={compositeSriResult.sri >= 75 ? 'pulse-threat' : ''} />
             <div>
@@ -170,9 +175,9 @@ export function Navbar({ activeTab, setActiveTab }) {
             className="cyber-btn"
             title={isSirenActive ? "Stop Emergency Siren" : "Sound Emergency Siren"}
             style={{ 
-              background: isSirenActive ? 'linear-gradient(135deg, #ef4444, #991b1b)' : 'rgba(30, 41, 59, 0.6)',
+              background: isSirenActive ? 'linear-gradient(135deg, #ef4444, #991b1b)' : 'var(--bg-card)',
               borderColor: isSirenActive ? '#ef4444' : 'var(--border-subtle)',
-              color: isSirenActive ? '#fff' : '#f87171',
+              color: isSirenActive ? '#fff' : '#dc2626',
               padding: '0.5rem 0.75rem'
             }}
           >
@@ -189,13 +194,35 @@ export function Navbar({ activeTab, setActiveTab }) {
             title={isMuted ? "Unmute Audio" : "Mute Audio Alerts"}
             style={{ padding: '0.5rem' }}
           >
-            {isMuted ? <VolumeX size={17} color="#94a3b8" /> : <Volume2 size={17} color="#38bdf8" />}
+            {isMuted ? <VolumeX size={17} color="var(--text-secondary)" /> : <Volume2 size={17} color="var(--accent-gold)" />}
           </button>
 
-          {/* Clock */}
-          <div className="font-mono" style={{ fontSize: '0.85rem', color: '#94a3b8', padding: '0 0.5rem' }}>
-            {timeStr}
-          </div>
+          {/* Theme Switcher */}
+          <button
+            onClick={toggleTheme}
+            className="cyber-btn"
+            title={`Switch to ${isGoldenAura ? 'Midnight Cyber Glass' : 'Golden Aura Glass'}`}
+            style={{
+              padding: '0.45rem 0.85rem',
+              background: isGoldenAura ? 'rgba(217, 119, 6, 0.15)' : 'rgba(30, 41, 59, 0.6)',
+              borderColor: isGoldenAura ? 'var(--accent-gold)' : 'var(--border-glass)',
+              color: isGoldenAura ? 'var(--accent-gold)' : '#f8fafc',
+              fontSize: '0.75rem',
+              fontWeight: 700
+            }}
+          >
+            {isGoldenAura ? (
+              <>
+                <Sparkles size={15} color="var(--accent-gold)" />
+                <span>Golden Aura</span>
+              </>
+            ) : (
+              <>
+                <Moon size={15} color="#38bdf8" />
+                <span>Midnight Glass</span>
+              </>
+            )}
+          </button>
 
           {/* Role Switcher Pill */}
           <div style={{ position: 'relative' }}>
@@ -203,7 +230,7 @@ export function Navbar({ activeTab, setActiveTab }) {
               onClick={() => setShowRoleMenu(!showRoleMenu)} 
               className="cyber-btn"
               style={{ 
-                background: 'rgba(15, 23, 42, 0.85)', 
+                background: 'var(--bg-card)', 
                 borderColor: currentRole.color,
                 display: 'flex',
                 alignItems: 'center',
@@ -213,7 +240,7 @@ export function Navbar({ activeTab, setActiveTab }) {
             >
               <div style={{ width: '8px', height: '8px', borderRadius: '50%', background: currentRole.color }} />
               <div style={{ textAlign: 'left' }}>
-                <div style={{ fontSize: '0.78rem', fontWeight: 600, color: '#f8fafc' }}>{userName}</div>
+                <div style={{ fontSize: '0.78rem', fontWeight: 600, color: 'var(--text-primary)' }}>{userName}</div>
                 <div className="font-mono" style={{ fontSize: '0.65rem', color: currentRole.color }}>{currentRole.badge}</div>
               </div>
             </button>
@@ -225,12 +252,14 @@ export function Navbar({ activeTab, setActiveTab }) {
                 right: 0, 
                 top: '115%', 
                 width: '260px', 
-                background: '#0a1222', 
-                border: '1px solid #334155', 
-                padding: '0.5rem', 
-                zIndex: 100 
+                background: 'var(--bg-card-elevated)', 
+                border: '1px solid var(--border-glass)', 
+                borderRadius: '16px',
+                padding: '0.65rem', 
+                zIndex: 100,
+                boxShadow: 'var(--shadow-hover)'
               }}>
-                <div className="font-mono" style={{ fontSize: '0.68rem', color: '#94a3b8', padding: '0.35rem 0.5rem', borderBottom: '1px solid #1e293b' }}>
+                <div className="font-mono" style={{ fontSize: '0.68rem', color: 'var(--text-secondary)', padding: '0.35rem 0.5rem', borderBottom: '1px solid var(--border-subtle)', fontWeight: 600 }}>
                   SWITCH ACCESS ROLE:
                 </div>
                 {Object.keys(ROLES).map(roleKey => {
@@ -247,19 +276,19 @@ export function Navbar({ activeTab, setActiveTab }) {
                         width: '100%', 
                         display: 'flex', 
                         alignItems: 'center', 
-                        justifyContent: 'space-between',
+                        justifyContent: 'space-between', 
                         padding: '0.6rem 0.5rem', 
                         margin: '0.2rem 0',
-                        background: isSelected ? 'rgba(56, 189, 248, 0.12)' : 'transparent',
+                        background: isSelected ? 'rgba(217, 119, 6, 0.12)' : 'transparent',
                         border: isSelected ? `1px solid ${role.color}` : '1px solid transparent',
-                        borderRadius: '6px',
-                        color: '#f8fafc',
+                        borderRadius: '8px',
+                        color: 'var(--text-primary)',
                         cursor: 'pointer',
                         textAlign: 'left'
                       }}
                     >
                       <div>
-                        <div style={{ fontSize: '0.82rem', fontWeight: 600 }}>{role.title}</div>
+                        <div style={{ fontSize: '0.82rem', fontWeight: 600, color: 'var(--text-primary)' }}>{role.title}</div>
                         <div className="font-mono" style={{ fontSize: '0.68rem', color: role.color }}>{role.badge}</div>
                       </div>
                       {isSelected && <UserCheck size={16} color={role.color} />}

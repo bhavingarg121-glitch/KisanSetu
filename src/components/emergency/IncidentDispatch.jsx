@@ -40,8 +40,8 @@ export function IncidentDispatch() {
     <div className="glass-panel" style={{ padding: '1.25rem', marginBottom: '1.5rem' }}>
       <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '1rem', flexWrap: 'wrap', gap: '0.5rem' }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-          <ShieldCheck size={18} color="#38bdf8" />
-          <span className="font-display" style={{ fontSize: '1.15rem', fontWeight: 700, color: '#f8fafc' }}>
+          <ShieldCheck size={18} color="var(--accent-gold)" />
+          <span className="font-display" style={{ fontSize: '1.15rem', fontWeight: 700, color: 'var(--text-primary)' }}>
             TACTICAL INCIDENT DISPATCH & STAMPEDE MITIGATION SOP
           </span>
         </div>
@@ -56,7 +56,7 @@ export function IncidentDispatch() {
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: '1.5rem' }}>
         {/* Security Units Roster */}
         <div>
-          <div className="font-mono" style={{ fontSize: '0.72rem', color: '#94a3b8', marginBottom: '0.5rem' }}>
+          <div className="font-mono" style={{ fontSize: '0.72rem', color: 'var(--text-secondary)', marginBottom: '0.5rem', fontWeight: 600 }}>
             FIELD SECURITY UNITS & POSITIONING:
           </div>
 
@@ -67,29 +67,30 @@ export function IncidentDispatch() {
                 <div
                   key={u.id}
                   style={{
-                    background: 'rgba(15, 23, 42, 0.65)',
-                    border: `1px solid ${isEngaged ? '#ef444460' : 'var(--border-subtle)'}`,
-                    borderRadius: '8px',
-                    padding: '0.75rem',
+                    background: 'var(--bg-card)',
+                    border: `1px solid ${isEngaged ? '#dc262660' : 'var(--border-subtle)'}`,
+                    borderRadius: '14px',
+                    padding: '0.85rem',
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'space-between',
-                    gap: '0.75rem'
+                    gap: '0.75rem',
+                    boxShadow: 'var(--shadow-glass)'
                   }}
                 >
                   <div>
                     <div style={{ display: 'flex', alignItems: 'center', gap: '0.4rem', marginBottom: '0.2rem' }}>
-                      <span className="font-mono" style={{ fontSize: '0.75rem', fontWeight: 700, color: '#38bdf8' }}>
+                      <span className="font-mono" style={{ fontSize: '0.75rem', fontWeight: 700, color: 'var(--accent-gold)' }}>
                         {u.id}
                       </span>
-                      <span style={{ fontSize: '0.8rem', fontWeight: 600, color: '#f8fafc' }}>
+                      <span style={{ fontSize: '0.82rem', fontWeight: 600, color: 'var(--text-primary)' }}>
                         {u.name}
                       </span>
                     </div>
-                    <div style={{ fontSize: '0.72rem', color: '#94a3b8' }}>
+                    <div style={{ fontSize: '0.72rem', color: 'var(--text-secondary)' }}>
                       Lead: {u.lead} • {u.personnel} Officers • Radio: {u.radioChannel}
                     </div>
-                    <div style={{ fontSize: '0.72rem', color: '#cbd5e1', marginTop: '0.2rem' }}>
+                    <div style={{ fontSize: '0.72rem', color: 'var(--text-primary)', marginTop: '0.2rem' }}>
                       Sector: <strong>{u.sector}</strong>
                     </div>
                   </div>
@@ -102,7 +103,7 @@ export function IncidentDispatch() {
                       <button
                         onClick={() => handleDeployQrf(u.id)}
                         className="cyber-btn cyber-btn-primary"
-                        style={{ fontSize: '0.68rem', padding: '0.25rem 0.5rem' }}
+                        style={{ fontSize: '0.68rem', padding: '0.25rem 0.6rem' }}
                       >
                         Deploy
                       </button>
@@ -117,22 +118,23 @@ export function IncidentDispatch() {
         {/* Standard Operating Procedure (SOP) Checklist */}
         <div>
           <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '0.5rem' }}>
-            <span className="font-mono" style={{ fontSize: '0.72rem', color: '#94a3b8' }}>
+            <span className="font-mono" style={{ fontSize: '0.72rem', color: 'var(--text-secondary)', fontWeight: 600 }}>
               STAMPEDE CRISIS MITIGATION PROTOCOL (SOP-401):
             </span>
-            <span className="font-mono" style={{ fontSize: '0.72rem', color: '#10b981' }}>
+            <span className="font-mono" style={{ fontSize: '0.72rem', color: '#059669', fontWeight: 700 }}>
               {completedSopCount} / {sopChecklist.length} COMPLETE
             </span>
           </div>
 
           <div style={{ 
-            background: 'rgba(10, 17, 32, 0.7)', 
+            background: 'var(--bg-card)', 
             border: '1px solid var(--border-subtle)', 
-            borderRadius: '8px', 
-            padding: '0.75rem',
+            borderRadius: '16px', 
+            padding: '0.85rem',
             display: 'flex',
             flexDirection: 'column',
-            gap: '0.5rem'
+            gap: '0.5rem',
+            boxShadow: 'var(--shadow-glass)'
           }}>
             {sopChecklist.map(item => (
               <div
@@ -142,21 +144,22 @@ export function IncidentDispatch() {
                   display: 'flex',
                   alignItems: 'flex-start',
                   gap: '0.6rem',
-                  padding: '0.55rem',
-                  borderRadius: '6px',
-                  background: item.completed ? 'rgba(16, 185, 129, 0.08)' : 'rgba(15, 23, 42, 0.4)',
+                  padding: '0.65rem',
+                  borderRadius: '10px',
+                  background: item.completed ? 'rgba(5, 150, 105, 0.12)' : 'var(--bg-card-elevated)',
                   cursor: 'pointer',
-                  transition: 'background 0.2s ease'
+                  transition: 'background 0.2s ease',
+                  border: '1px solid var(--border-subtle)'
                 }}
               >
                 {item.completed ? (
-                  <CheckSquare size={17} color="#10b981" style={{ flexShrink: 0, marginTop: '2px' }} />
+                  <CheckSquare size={17} color="#059669" style={{ flexShrink: 0, marginTop: '2px' }} />
                 ) : (
-                  <Square size={17} color="#64748b" style={{ flexShrink: 0, marginTop: '2px' }} />
+                  <Square size={17} color="var(--text-secondary)" style={{ flexShrink: 0, marginTop: '2px' }} />
                 )}
                 <span style={{ 
                   fontSize: '0.78rem', 
-                  color: item.completed ? '#cbd5e1' : '#f8fafc',
+                  color: item.completed ? 'var(--text-secondary)' : 'var(--text-primary)',
                   textDecoration: item.completed ? 'line-through' : 'none',
                   lineHeight: 1.35
                 }}>

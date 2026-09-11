@@ -8,8 +8,8 @@ export function ZoneTrafficTable() {
   return (
     <div className="glass-panel" style={{ padding: '1.25rem', marginBottom: '1.5rem' }}>
       <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '1rem' }}>
-        <Layers size={18} color="#38bdf8" />
-        <span className="font-display" style={{ fontSize: '1.1rem', fontWeight: 700, color: '#f8fafc' }}>
+        <Layers size={18} color="var(--accent-gold)" />
+        <span className="font-display" style={{ fontSize: '1.1rem', fontWeight: 700, color: 'var(--text-primary)' }}>
           ZONE ARTERY TRAFFIC & EVACUATION PRIORITY AUDIT
         </span>
       </div>
@@ -17,7 +17,7 @@ export function ZoneTrafficTable() {
       <div style={{ overflowX: 'auto' }}>
         <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: '0.8rem', textAlign: 'left' }}>
           <thead>
-            <tr style={{ borderBottom: '1px solid #1e293b', color: '#64748b' }}>
+            <tr style={{ borderBottom: '1px solid var(--border-subtle)', color: 'var(--text-secondary)' }}>
               <th style={{ padding: '0.6rem 0.5rem' }}>ZONE SECTOR</th>
               <th style={{ padding: '0.6rem 0.5rem' }}>HEADCOUNT</th>
               <th style={{ padding: '0.6rem 0.5rem' }}>OCCUPANCY %</th>
@@ -38,32 +38,32 @@ export function ZoneTrafficTable() {
                   key={z.id}
                   onClick={() => setSelectedZoneId(z.id)}
                   style={{ 
-                    borderBottom: '1px solid rgba(30, 41, 59, 0.4)',
-                    background: selectedZoneId === z.id ? 'rgba(56, 189, 248, 0.12)' : 'transparent',
+                    borderBottom: '1px solid var(--border-subtle)',
+                    background: selectedZoneId === z.id ? 'rgba(217, 119, 6, 0.12)' : 'transparent',
                     cursor: 'pointer'
                   }}
                 >
-                  <td style={{ padding: '0.65rem 0.5rem', fontWeight: 600, color: '#f8fafc' }}>
+                  <td style={{ padding: '0.65rem 0.5rem', fontWeight: 600, color: 'var(--text-primary)' }}>
                     {z.name}
                   </td>
                   <td style={{ padding: '0.65rem 0.5rem' }}>
-                    <span className="font-mono">{z.currentCount.toLocaleString()} / {z.capacity.toLocaleString()}</span>
+                    <span className="font-mono" style={{ color: 'var(--text-primary)' }}>{z.currentCount.toLocaleString()} / {z.capacity.toLocaleString()}</span>
                   </td>
                   <td style={{ padding: '0.65rem 0.5rem' }}>
                     <div style={{ display: 'flex', alignItems: 'center', gap: '0.4rem' }}>
-                      <div style={{ width: '60px', height: '6px', background: '#1e293b', borderRadius: '3px', overflow: 'hidden' }}>
-                        <div style={{ width: `${occ}%`, height: '100%', background: occ > 85 ? '#ef4444' : occ > 65 ? '#f59e0b' : '#10b981' }} />
+                      <div style={{ width: '60px', height: '6px', background: 'var(--border-subtle)', borderRadius: '3px', overflow: 'hidden' }}>
+                        <div style={{ width: `${occ}%`, height: '100%', background: occ > 85 ? '#dc2626' : occ > 65 ? '#d97706' : '#059669' }} />
                       </div>
-                      <span className="font-mono" style={{ fontSize: '0.72rem', color: '#94a3b8' }}>{occ}%</span>
+                      <span className="font-mono" style={{ fontSize: '0.72rem', color: 'var(--text-secondary)' }}>{occ}%</span>
                     </div>
                   </td>
                   <td style={{ padding: '0.65rem 0.5rem' }}>
-                    <span className="font-mono" style={{ fontWeight: 700, color: isCrit ? '#ef4444' : isWarn ? '#f59e0b' : '#34d399' }}>
+                    <span className="font-mono" style={{ fontWeight: 700, color: isCrit ? '#dc2626' : isWarn ? '#d97706' : '#059669' }}>
                       {z.density} p/m²
                     </span>
                   </td>
                   <td style={{ padding: '0.65rem 0.5rem' }}>
-                    <span className="font-mono" style={{ color: z.velocity < 0.5 ? '#ef4444' : '#38bdf8' }}>
+                    <span className="font-mono" style={{ color: z.velocity < 0.5 ? '#dc2626' : 'var(--accent-gold)' }}>
                       {z.velocity} m/s
                     </span>
                   </td>
@@ -72,7 +72,7 @@ export function ZoneTrafficTable() {
                       Priority {z.evacPriority}
                     </span>
                   </td>
-                  <td style={{ padding: '0.65rem 0.5rem', color: '#94a3b8', fontSize: '0.75rem' }}>
+                  <td style={{ padding: '0.65rem 0.5rem', color: 'var(--text-secondary)', fontSize: '0.75rem' }}>
                     {z.exitGate}
                   </td>
                 </tr>

@@ -130,7 +130,7 @@ export function EmergencyBroadcast() {
       </div>
 
       {/* Preset Broadcast Dispatch */}
-      <div className="font-mono" style={{ fontSize: '0.72rem', color: '#94a3b8', marginBottom: '0.6rem' }}>
+      <div className="font-mono" style={{ fontSize: '0.72rem', color: 'var(--text-secondary)', marginBottom: '0.6rem', fontWeight: 600 }}>
         STANDARDIZED EMERGENCY BROADCAST PROTOCOLS:
       </div>
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '1rem', marginBottom: '1.5rem' }}>
@@ -138,13 +138,14 @@ export function EmergencyBroadcast() {
           <div
             key={idx}
             style={{
-              background: 'rgba(10, 17, 32, 0.8)',
+              background: 'var(--bg-card)',
               border: `1px solid ${p.color}50`,
-              borderRadius: '8px',
-              padding: '1rem',
+              borderRadius: '16px',
+              padding: '1.25rem',
               display: 'flex',
               flexDirection: 'column',
-              justifyContent: 'space-between'
+              justifyContent: 'space-between',
+              boxShadow: 'var(--shadow-glass)'
             }}
           >
             <div>
@@ -154,10 +155,10 @@ export function EmergencyBroadcast() {
                 </span>
                 <Radio size={14} color={p.color} />
               </div>
-              <div style={{ fontSize: '0.9rem', fontWeight: 700, color: '#f8fafc', marginBottom: '0.35rem' }}>
+              <div style={{ fontSize: '0.95rem', fontWeight: 700, color: 'var(--text-primary)', marginBottom: '0.35rem' }}>
                 {p.title}
               </div>
-              <p style={{ fontSize: '0.75rem', color: '#94a3b8', lineHeight: 1.35, marginBottom: '0.85rem' }}>
+              <p style={{ fontSize: '0.78rem', color: 'var(--text-secondary)', lineHeight: 1.4, marginBottom: '0.85rem' }}>
                 "{p.message}"
               </p>
             </div>
@@ -169,8 +170,9 @@ export function EmergencyBroadcast() {
                 width: '100%',
                 fontSize: '0.78rem',
                 borderColor: p.color,
-                background: `${p.color}20`,
-                color: '#f8fafc'
+                background: `${p.color}15`,
+                color: p.color,
+                fontWeight: 600
               }}
             >
               <Send size={13} color={p.color} />
@@ -181,8 +183,8 @@ export function EmergencyBroadcast() {
       </div>
 
       {/* Custom Broadcast Form */}
-      <form onSubmit={handleSendCustom} style={{ background: 'rgba(15, 23, 42, 0.6)', padding: '1rem', borderRadius: '8px', border: '1px solid var(--border-subtle)', marginBottom: '1.5rem' }}>
-        <label className="font-mono" style={{ fontSize: '0.72rem', color: '#94a3b8', display: 'block', marginBottom: '0.4rem' }}>
+      <form onSubmit={handleSendCustom} style={{ background: 'var(--bg-card)', padding: '1.25rem', borderRadius: '16px', border: '1px solid var(--border-subtle)', marginBottom: '1.5rem' }}>
+        <label className="font-mono" style={{ fontSize: '0.72rem', color: 'var(--text-secondary)', display: 'block', marginBottom: '0.4rem', fontWeight: 600 }}>
           CUSTOM SPEECH SYNTHESIS & SIGNAGE OVERRIDE MESSAGE
         </label>
         <div style={{ display: 'flex', gap: '0.6rem' }}>
@@ -193,11 +195,11 @@ export function EmergencyBroadcast() {
             onChange={(e) => setCustomMsg(e.target.value)}
             style={{
               flex: 1,
-              padding: '0.65rem 0.85rem',
-              background: '#070c17',
-              border: '1px solid #1e293b',
-              borderRadius: '8px',
-              color: '#f8fafc',
+              padding: '0.75rem 0.95rem',
+              background: 'var(--bg-card-elevated)',
+              border: '1px solid var(--border-subtle)',
+              borderRadius: '12px',
+              color: 'var(--text-primary)',
               fontSize: '0.85rem'
             }}
           />

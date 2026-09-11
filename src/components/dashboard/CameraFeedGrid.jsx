@@ -224,12 +224,12 @@ export function CameraFeedGrid() {
       <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '1rem', flexWrap: 'wrap', gap: '0.75rem' }}>
         <div>
           <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-            <Video size={18} color="#00f0ff" />
-            <span className="font-display" style={{ fontSize: '1.15rem', fontWeight: 700, color: '#f8fafc' }}>
+            <Video size={18} color="var(--accent-gold)" />
+            <span className="font-display" style={{ fontSize: '1.15rem', fontWeight: 700, color: 'var(--text-primary)' }}>
               CCTV COMPUTER VISION TELEMETRY MATRIX
             </span>
           </div>
-          <p style={{ fontSize: '0.75rem', color: '#94a3b8' }}>
+          <p style={{ fontSize: '0.75rem', color: 'var(--text-secondary)' }}>
             Live edge neural inference with real-time bounding box detection, head-count, and optical flow vectors.
           </p>
         </div>
