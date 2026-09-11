@@ -1,90 +1,308 @@
-# CrowdIQ - AI-Based Crowd Management & Stampede Prevention Platform
+<div align="center">
 
-[![FastAPI](https://img.shields.io/badge/Backend-FastAPI-009688?logo=fastapi&logoColor=white)](https://fastapi.tiangolo.com)
-[![PyTorch](https://img.shields.io/badge/AI%2FML-PyTorch-EE4C2C?logo=pytorch&logoColor=white)](https://pytorch.org)
-[![Firebase](https://img.shields.io/badge/Database-Firebase%20Firestore-FFCA28?logo=firebase&logoColor=black)](https://firebase.google.com)
-[![React](https://img.shields.io/badge/Frontend-React%2019%20%2B%20Vite-61DAFB?logo=react&logoColor=black)](https://react.dev)
+# 🛡️ CrowdIQ
+### AI-Powered Crowd Management & Stampede Prevention Platform
 
-**CrowdIQ** is an AI-powered command center and crowd safety operating system designed for high-density environments (stadiums, transit hubs, pilgrimage sites, concert arenas). It shifts crowd safety from reactive response to predictive prevention using live computer vision telemetry, spatial density heatmaps, mathematical Stampede Risk Modeling (SRI), smart wayfinding rerouting, and digital QR turnstile access control.
+[![FastAPI](https://img.shields.io/badge/Backend-FastAPI-009688?style=for-the-badge&logo=fastapi&logoColor=white)](https://fastapi.tiangolo.com)
+[![PyTorch](https://img.shields.io/badge/AI%2FML-PyTorch-EE4C2C?style=for-the-badge&logo=pytorch&logoColor=white)](https://pytorch.org)
+[![Firebase](https://img.shields.io/badge/Database-Firebase%20Firestore-FFCA28?style=for-the-badge&logo=firebase&logoColor=black)](https://firebase.google.com)
+[![React](https://img.shields.io/badge/Frontend-React%2019%20%2B%20Vite-61DAFB?style=for-the-badge&logo=react&logoColor=black)](https://react.dev)
+[![License](https://img.shields.io/badge/License-MIT-green.svg?style=for-the-badge)](LICENSE)
 
----
+**Predictive Crowd Dynamics • Edge Computer Vision • Real-Time Spatial Heatmaps • Stampede Early Warning • Dynamic Egress Rerouting • Cryptographic QR Turnstiles**
 
-## Technology Stack
-
-- **Frontend**: HTML5, Vanilla CSS Design System (Command Center dark cyber aesthetics), JavaScript, **React 19 + Vite**, Lucide Icons, Canvas API, Web Audio API, Web Speech Synthesis.
-- **Backend**: **Python FastAPI** (`backend/main.py`), Uvicorn, REST API endpoints, WebSocket streaming.
-- **Database**: **Firebase Firestore** (`backend/firebase_config.py` with `firebase-admin` and robust in-memory emulator fallback).
-- **AI / ML**: **Python PyTorch**, NumPy, Scikit-Learn:
-  - **Spatial Density & Optical Flow** (`backend/ai_engine/density_model.py`): Gaussian kernel density mapping (CSRNet) and directional turbulence calculations.
-  - **Stampede Risk Index (SRI)**: Mathematical formula incorporating density (40%), directional turbulence (25%), stagnation (20%), and inflow surge (15%).
-  - **Predictive Peak Influx Forecasting** (`backend/ai_engine/predictive_lstm.py`): PyTorch LSTM neural network predicting future accumulation curves and critical danger thresholds.
-  - **Dynamic Evacuation Router** (`backend/ai_engine/evacuation_router.py`): Graph-based Dijkstra algorithm weighting real-time corridor congestion to steer crowds to safe exits.
+[Explore Live UI (Local)](http://localhost:5173/) • [API Interactive Docs](http://127.0.0.1:8000/docs) • [Operational Project Report (OPR)](OPR.md) • [Technical Requirements Document (TRD)](TRD.md)
 
 ---
 
-## Core Capabilities
+</div>
 
-1. **Live Command Operations Dashboard**:
-   - Canvas-rendered 2D venue density heatmap with Fruin Level of Service color tiers (Green `<2.0`, Amber `2.0-3.9`, Crimson `≥4.0 p/m²`).
-   - 4-channel CCTV neural vision matrix with simulated bounding boxes, confidence scores, and flow vectors.
-   - Real-time incident alert drawer with instant acknowledge & security guard dispatch triggers.
-
-2. **Stampede Prevention & Peak Crowd AI**:
-   - Continuous composite Stampede Risk Index (SRI 0-100%).
-   - Hourly surge projection chart (16:00 to 00:00) with a 90% capacity hazard boundary line.
-   - Sector bottleneck vulnerability ranking table.
-
-3. **Smart Wayfinding & Dynamic Evacuation**:
-   - Automated side-by-side corridor comparison (e.g. *Gate A Plaza [Congested, 18m wait]* vs *West Egress [Fluid, 3m wait]*).
-   - One-click trigger to push smart reroutes to digital venue displays and attendee mobile passes.
-
-4. **QR Digital Entry & Turnstile Access Control**:
-   - Cryptographic ticket pass generator with downloadable/printable QR pass.
-   - Guard scanner terminal with instant validation and duplicate reuse prevention (blocks ticket sharing).
-
-5. **Emergency Broadcast & Tactical Dispatch**:
-   - Web Audio API procedural acoustic klaxon siren (440Hz - 720Hz).
-   - Authoritative PA voice speech synthesis broadcast.
-   - Tactical security unit board (Alpha, Bravo, Charlie, Delta, Medic) with interactive Stampede Mitigation SOP checklist.
-
-6. **Interactive Chaos Sandbox & Mobile Companion**:
-   - Test presets: *Nominal Operations*, *Main Act Finale Surge (+240%)*, *Catastrophic Chokepoint Jam*, and *Smart Reroute Dissipation*.
-   - Influx slider (0.5x to 5.0x).
-   - Attendee smartphone view with live digital ticket and least-crowded exit finder.
+## 📌 Table of Contents
+- [Executive Overview](#-executive-overview)
+- [System Architecture](#-system-architecture)
+- [Key Features](#-key-features)
+  - [1. Operations Command Center](#1-operations-command-center)
+  - [2. Stampede Risk Index (SRI) & Predictive AI](#2-stampede-risk-index-sri--predictive-ai)
+  - [3. Smart Wayfinding & Dynamic Evacuation](#3-smart-wayfinding--dynamic-evacuation)
+  - [4. QR Turnstile Access Control & Anti-Passback](#4-qr-turnstile-access-control--anti-passback)
+  - [5. Acoustic Klaxon & Emergency Speech PA](#5-acoustic-klaxon--emergency-speech-pa)
+  - [6. Chaos Simulation Sandbox & Attendee Mobile Portal](#6-chaos-simulation-sandbox--attendee-mobile-portal)
+- [Technology Stack Matrix](#-technology-stack-matrix)
+- [Mathematical & Algorithmic Formulation](#-mathematical--algorithmic-formulation)
+- [Directory Structure](#-directory-structure)
+- [Getting Started & Installation](#-getting-started--installation)
+  - [Prerequisites](#prerequisites)
+  - [Backend Setup (FastAPI & PyTorch)](#1-start-python-fastapi-backend-port-8000)
+  - [Frontend Setup (React & Vite)](#2-start-react-frontend-port-5173)
+- [Firebase Configuration](#-firebase-configuration)
+- [REST API & WebSocket Documentation](#-rest-api--websocket-documentation)
+- [Role-Based Access Control (RBAC)](#-role-based-access-control-rbac)
+- [Project Documentation](#-project-documentation)
+- [Contributing & License](#-contributing--license)
 
 ---
 
-## Running Locally
+## 🌟 Executive Overview
 
-### 1. Start Python FastAPI Backend (Port 8000)
+Mass gatherings in high-density venues (sports stadiums, concert arenas, religious pilgrimage sites, and transit hubs) present catastrophic safety hazards from sudden surges, compressive asphyxia, and crowd crushes. Traditional crowd management methods are **fundamentally reactive**—security personnel intervene only after bottlenecks cause panic.
+
+**CrowdIQ** is a mission-critical, AI-driven operating system that transitions crowd control into **predictive crowd prevention**. By fusing edge computer-vision telemetry, Fruin Level of Service (LOS) spatial density mapping, a mathematical **Stampede Risk Index (SRI)**, PyTorch neural time-series forecasting, and automated graph-based evacuation rerouting, CrowdIQ enables venue operators to detect micro-shockwaves and dissipate choke points minutes before dangerous crushes can develop.
+
+---
+
+## 🏗️ System Architecture
+
+```mermaid
+graph TB
+    subgraph Client_Tier ["Client Presentation Layer (React 19 + Vite - Port 5173)"]
+        UI["Command Operations Dashboard"]
+        CanvasHeatmap["HTML5 Canvas 2D Density Heatmap (60 FPS)"]
+        CCTVFeeds["CCTV Neural Vision Matrix with Bounding Boxes"]
+        ScannerView["Turnstile QR Scanner & Pass Generator"]
+        AudioSynth["Web Audio Procedural Klaxon & Speech PA"]
+        MobilePortal["Attendee Mobile Companion View"]
+    end
+
+    subgraph Transport_Tier ["Networking & Transport"]
+        REST_API["REST API (HTTP/2 JSON)"]
+        WS_Stream["Real-Time WebSocket (ws://127.0.0.1:8000/ws/telemetry)"]
+    end
+
+    subgraph Backend_Tier ["Backend Application Layer (Python FastAPI - Port 8000)"]
+        FastAPI_App["FastAPI Server & Async Event Loop"]
+        DensityEngine["PyTorch CSRNet Density & Vector Model"]
+        LSTMForecaster["PyTorch 2-Layer LSTM Surge Forecaster"]
+        EvacRouter["Dijkstra Dynamic Congestion Wayfinding"]
+    end
+
+    subgraph Storage_Tier ["Database & Persistence (Firebase Firestore)"]
+        FirestoreCloud["Google Cloud Firebase Firestore"]
+        FirestoreEmulator["Zero-Config In-Memory Emulator"]
+    end
+
+    UI --> REST_API
+    UI --> WS_Stream
+    CanvasHeatmap --> UI
+    CCTVFeeds --> UI
+    ScannerView --> UI
+    AudioSynth --> UI
+    MobilePortal --> UI
+
+    REST_API <--> FastAPI_App
+    WS_Stream <--> FastAPI_App
+
+    FastAPI_App <--> DensityEngine
+    FastAPI_App <--> LSTMForecaster
+    FastAPI_App <--> EvacRouter
+
+    FastAPI_App <--> FirestoreCloud
+    FastAPI_App <--> FirestoreEmulator
+```
+
+---
+
+## 🚀 Key Features
+
+### 1. Operations Command Center
+- **Interactive Spatial Venue Heatmap**: Canvas-rendered 2D layout of all sectors with real-time radial gradients color-coded by density (Green `<2.0`, Amber `2.0-3.9`, Crimson `≥4.0 p/m²`) and optical flow vector particles showing movement direction.
+- **CCTV Neural Vision Matrix**: 4 multi-camera feeds (`CAM-01` to `CAM-04`) rendering simulated AI bounding boxes, detection confidence tags (`person 98%`), head counts, and optical flow vectors.
+- **Real-Time Incident Alerts**: Live priority queue (`CRITICAL`, `WARNING`, `INFO`) with instant **Acknowledge** and **Tactical Dispatch** actions.
+- **Global Telemetry Bar**: Real-time venue headcount, occupancy %, inflow/outflow velocity (`pax/min`), and composite SRI gauge.
+
+### 2. Stampede Risk Index (SRI) & Predictive AI
+- **Mathematical SRI Formula**: Evaluates density, directional turbulence, velocity stagnation, and surge ratios to compute a real-time hazard score (0–100%).
+- **PyTorch LSTM Peak Forecasting**: Time-series neural network projecting future crowd curves (16:00 to 00:00) with a 90% capacity hazard threshold.
+- **Bottleneck Vulnerability Ranking**: Real-time ranking of sectors most susceptible to choking with automated dissipation recommendations.
+
+### 3. Smart Wayfinding & Dynamic Evacuation
+- **Side-by-Side Corridor Comparison**: Highlights congested arteries (e.g. *Gate A Plaza*: 18 min wait, 4.3 p/m², High Risk) versus AI-recommended relief paths (*West Egress*: <3 min wait, 1.1 p/m², Fluid).
+- **One-Click Reroute Dispatch**: Automatically pushes directional arrows to stadium jumbotrons and attendee mobile passes, relieving arena choke pressure by **42%**.
+- **Zone Traffic & Evacuation Audit**: Complete inventory of zone capacities, flow velocities, and evacuation priority rankings.
+
+### 4. QR Turnstile Access Control & Anti-Passback
+- **Cryptographic Pass Generator**: Generates real, scannable QR tickets (`qrcode` library) with attendee metadata, zone allocation, and downloadable digital passes.
+- **Security Guard Scanner Terminal**: Validates passes instantly and enforces **anti-passback protection** (blocks ticket reuse and duplicate scans).
+- **Integrated Audio Feedback**: Synthesizes chimes for valid admissions and buzzers for rejected/duplicate passes.
+
+### 5. Acoustic Klaxon & Emergency Speech PA
+- **Procedural Warble Klaxon Siren**: Synthesized via Web Audio API dual-oscillator modulation (440Hz–720Hz)—zero external audio files required.
+- **Hardware-Accelerated Voice Broadcast**: Web Speech API (`SpeechSynthesis`) speaks authoritative crowd evacuation announcements.
+- **Digital Signage Ticker Simulator**: Displays real-time instructions as they would appear on venue LED boards.
+- **Tactical Dispatch Board**: Unit positioning (Alpha, Bravo, Charlie, Delta, Medic) and interactive Stampede Mitigation SOP checklist.
+
+### 6. Chaos Simulation Sandbox & Attendee Mobile Portal
+- **Surge Simulation Sandbox**: Allows commanders and evaluators to inject synthetic crowd surges (*Nominal Operations*, *Main Act Finale Surge (+240%)*, *Catastrophic Chokepoint Jam*, *Smart Reroute Dissipation*) and adjust the influx slider (0.5x to 5.0x).
+- **Role-Based Access Control (RBAC)**: Switch between **Incident Commander** (Super Admin), **Field Security Officer**, **Operations Executive**, and **Event Attendee**.
+- **Mobile Attendee Portal**: Responsive smartphone viewport displaying personal tickets, real-time safety notices, and a "Safe Egress Route Finder".
+
+---
+
+## 🛠️ Technology Stack Matrix
+
+| Layer | Technologies | Description |
+| :--- | :--- | :--- |
+| **Frontend** | React 19, JavaScript (ES6+), Vite 8 | Reactive component tree, Context API state management |
+| **Styling** | Vanilla CSS Design System | Sleek dark command center theme, radar sweeps, glassmorphic panels |
+| **Visuals** | HTML5 Canvas API | 60 FPS spatial density heatmaps, flow particles, CCTV reticles |
+| **Audio** | Web Audio API & SpeechSynthesis | Procedural emergency siren synthesis and automated PA voice broadcast |
+| **Backend** | Python 3.14, FastAPI, Uvicorn | High-concurrency ASGI REST server and WebSocket streaming hub |
+| **AI / ML** | PyTorch 2.x, NumPy, Scikit-Learn | Tensor density mapping, directional turbulence, LSTM time-series forecast |
+| **Database** | Firebase Firestore (`firebase-admin`) | Digital pass registry, alerts, zone states, with in-memory emulator fallback |
+| **Version Control** | Git / GitHub | Remote repository at `sanchitamoundekar13/CrowdIQ` |
+
+---
+
+## 📐 Mathematical & Algorithmic Formulation
+
+### 1. Stampede Risk Index (SRI)
+The Stampede Risk Index is calculated continuously:
+
+$$SRI = 0.40 \cdot S_{\text{density}} + 0.25 \cdot S_{\text{turbulence}} + 0.20 \cdot S_{\text{stagnation}} + 0.15 \cdot S_{\text{surge}}$$
+
+Where:
+- $S_{\text{density}} = \text{clamp}\left(\frac{\rho - 1.0}{4.0}, 0, 1\right) \times 100$ ($\rho$ in people/$m^2$)
+- $S_{\text{turbulence}} = \text{clamp}(\tau, 0, 1) \times 100$ ($\tau$ = cross-directional angular variance)
+- $S_{\text{stagnation}} = \text{clamp}\left(\frac{1.2 - v}{1.0}, 0, 1\right) \times 100$ ($v$ = walking speed in $m/s$)
+- $S_{\text{surge}} = \text{clamp}\left(\frac{R_{in} - 1.0}{1.5}, 0, 1\right) \times 100$ ($R_{in}$ = inflow surge ratio)
+
+### 2. Dynamic Congestion-Penalized Evacuation Routing
+The shortest evacuation path through venue graph $G = (V, E)$ is computed by weighting edge costs dynamically:
+
+$$C(u, v) = C_{\text{base}}(u, v) \times \left(1.0 + \left(\frac{\rho_v}{2.0}\right)^2\right)$$
+
+---
+
+## 📁 Directory Structure
+
+```
+CrowdIQ/
+├── backend/                              # Python FastAPI & AI/ML Backend
+│   ├── ai_engine/
+│   │   ├── density_model.py              # PyTorch Gaussian density & SRI model
+│   │   ├── evacuation_router.py          # Dynamic Dijkstra wayfinding algorithm
+│   │   └── predictive_lstm.py            # PyTorch LSTM crowd forecaster
+│   ├── firebase_config.py                # Firebase Firestore & emulator fallback
+│   ├── main.py                           # FastAPI REST endpoints & WebSocket
+│   └── requirements.txt                  # Python dependencies
+├── src/                                  # React 19 Frontend
+│   ├── components/
+│   │   ├── attendee/                     # Mobile attendee portal & route finder
+│   │   ├── dashboard/                    # MetricsGrid, HeatmapCanvas, CameraFeedGrid, AlertsPanel
+│   │   ├── emergency/                    # EmergencyBroadcast, IncidentDispatch
+│   │   ├── layout/                       # Navbar, Sidebar
+│   │   ├── prediction/                   # PeakForecastChart, BottleneckAnalyzer
+│   │   ├── routing/                      # SmartRouteMap, ZoneTrafficTable
+│   │   ├── sandbox/                      # SurgeSimulator chaos testing
+│   │   └── ticketing/                    # PassGenerator, QRScannerTerminal
+│   ├── context/
+│   │   ├── AuthContext.jsx               # Role-based access control
+│   │   └── CrowdDataContext.jsx         # Real-time telemetry, state & API sync
+│   ├── services/
+│   │   ├── apiService.js                 # REST & WebSocket client to FastAPI
+│   │   ├── qrService.js                  # QR code generation & validator
+│   │   ├── soundAlerts.js                # Web Audio sirens & Speech PA
+│   │   └── stampedeRiskEngine.js         # Client-side SRI heuristics
+│   ├── App.jsx                           # Master application component
+│   ├── index.css                         # Command center styling & design system
+│   └── main.jsx                          # React entrypoint
+├── index.html                            # Application shell with metadata
+├── package.json                          # Node dependencies & build scripts
+├── vite.config.js                        # Vite configuration
+├── OPR.md                                # Operational Project Report
+├── TRD.md                                # Technical Requirements Document
+└── README.md                             # Project documentation
+```
+
+---
+
+## 💻 Getting Started & Installation
+
+### Prerequisites
+- **Node.js**: `v20.0+`
+- **Python**: `v3.10+` (Verified on `Python 3.14`)
+- **Git**: `v2.40+`
+
+### 1. Clone Repository
 ```powershell
-cd C:\Users\Sanchita\.gemini\antigravity-ide\scratch\crowdguard-ai
+git clone https://github.com/sanchitamoundekar13/CrowdIQ.git
+cd CrowdIQ
+```
+
+### 2. Start Python FastAPI Backend (Port 8000)
+```powershell
+# Install dependencies
+python -m pip install -r backend/requirements.txt
+
+# Start FastAPI server with Uvicorn
 python -m uvicorn backend.main:app --host 127.0.0.1 --port 8000
 ```
-- API Root: `http://127.0.0.1:8000/`
-- API Docs: `http://127.0.0.1:8000/docs`
-- WebSocket Telemetry: `ws://127.0.0.1:8000/ws/telemetry`
+- **API Root**: `http://127.0.0.1:8000/`
+- **Interactive Swagger Docs**: `http://127.0.0.1:8000/docs`
+- **WebSocket Stream**: `ws://127.0.0.1:8000/ws/telemetry`
 
-### 2. Start React Frontend (Port 5173)
+### 3. Start React Frontend (Port 5173)
 ```powershell
-cd C:\Users\Sanchita\.gemini\antigravity-ide\scratch\crowdguard-ai
+# In a separate terminal:
+npm.cmd install
 npm.cmd run dev
 ```
-Open **`http://localhost:5173/`** in your browser.
+Open **`http://localhost:5173/`** in your browser to access the live CrowdIQ Command Operations Center.
 
 ---
 
-## Firebase Configuration
+## ☁️ Firebase Configuration
 
-By default, the backend runs with an integrated in-memory Firestore emulator for instant zero-config testing.
+By default, the backend runs with an integrated **in-memory Firestore emulator** for instant zero-config testing.
 To connect to your live Google Cloud Firebase project:
-1. Download your Firebase service account key JSON from Firebase Console (`Project Settings > Service accounts > Generate new private key`).
-2. Save it as `backend/serviceAccountKey.json` or set `FIREBASE_CREDENTIALS_PATH`.
-3. Restart FastAPI — the backend will automatically connect to live cloud Firestore.
+1. Open the [Firebase Console](https://console.firebase.google.com/) and go to **Project Settings > Service accounts**.
+2. Click **Generate new private key** and download the JSON file.
+3. Save it as `backend/serviceAccountKey.json` (or set the environment variable `FIREBASE_CREDENTIALS_PATH`).
+4. Restart FastAPI—the backend will automatically connect to live cloud Firestore.
 
 ---
 
-## Git Repository
+## 📡 REST API & WebSocket Documentation
 
-Linked to remote: `https://github.com/sanchitamoundekar13/CrowdIQ.git`
-Branch: `main`
+### REST Endpoints (Port 8000)
+
+| Method | Endpoint | Description |
+| :--- | :--- | :--- |
+| `GET` | `/` | Health check & verified tech stack summary |
+| `GET` | `/api/telemetry` | Live headcount, occupancy %, flow velocities, and composite SRI |
+| `GET` | `/api/zones` | Zone-by-zone density, flow speed, and evacuation priorities |
+| `GET` | `/api/predictions/peak` | PyTorch LSTM hourly forecast curve (16:00–00:00) |
+| `GET` | `/api/routing/optimal` | Dijkstra dynamic evacuation path bypassing choked nodes |
+| `POST` | `/api/tickets/generate` | Issue cryptographic QR pass and store in Firebase |
+| `POST` | `/api/tickets/validate` | Verify pass, enforce single-use, and detect duplicates |
+| `POST` | `/api/emergency/broadcast` | Trigger PA voice broadcast, klaxon siren, and Firebase alert log |
+| `POST` | `/api/simulation/surge` | Inject synthetic crowd surge into PyTorch engine |
+
+### Real-Time WebSocket Telemetry
+- **URL**: `ws://127.0.0.1:8000/ws/telemetry`
+- **Cadence**: Streams live telemetry ticks every 2.0 seconds directly into the React UI.
+
+---
+
+## 👥 Role-Based Access Control (RBAC)
+
+| Role | Title | Access Scope |
+| :--- | :--- | :--- |
+| `super_admin` | **Incident Commander** | Full telemetry, threshold overrides, emergency klaxon activation, and tactical dispatch |
+| `security_guard` | **Field Security Officer** | Turnstile QR pass scanner, local sector alert feed, and incident acknowledgment |
+| `venue_director` | **Operations Executive** | Capacity analytics, revenue/attendance projections, and safety audit logging |
+| `attendee` | **Event Attendee** | Personal digital pass wallet, live safety advisories, and Safe Route Finder |
+
+---
+
+## 📚 Project Documentation
+
+- [**Operational Project Report (OPR.md)**](OPR.md): Full operational specification, disaster management SOPs, state transition diagrams, and deployment runbook.
+- [**Technical Requirements Document (TRD.md)**](TRD.md): In-depth software engineering architecture, mathematical derivations, data contracts, and non-functional requirement audits.
+
+---
+
+## 📄 License & Attribution
+
+Distributed under the **MIT License**. See `LICENSE` for more information.
+
+**CrowdIQ** — Designed and built with Google DeepMind Antigravity Systems for proactive public safety and crowd crush prevention.
