@@ -10,7 +10,7 @@ export function GoldenAuraHero({ onNavigate }) {
       title: 'Luxury Weddings',
       subtitle: 'VIP Gatherings & Galas',
       description: 'Elegant weddings with premium décor, guest capacity tracking and flawless spatial planning.',
-      image: '/assets/luxury_weddings.jpg',
+      image: './assets/luxury_weddings.jpg',
       badge: 'Zero Congestion',
       metric: 'Max Capacity: 1,200',
       actionTab: 'routing'
@@ -19,7 +19,7 @@ export function GoldenAuraHero({ onNavigate }) {
       title: 'Corporate Events',
       subtitle: 'Global Summits & Conventions',
       description: 'Professional conferences, launches, summits and intelligent gate turnstile metering.',
-      image: '/assets/corporate_events.jpg',
+      image: './assets/corporate_events.jpg',
       badge: 'Fluid Flow',
       metric: `${turnstileStats.entriesPerMin} pax/min ingress`,
       actionTab: 'ticketing'
@@ -28,7 +28,7 @@ export function GoldenAuraHero({ onNavigate }) {
       title: 'Birthday Parties & Concerts',
       subtitle: 'High-Density Arenas & Live Stages',
       description: 'Creative celebrations tailored to large crowds with dynamic evacuation paths and surge mitigation.',
-      image: '/assets/birthday_parties.jpg',
+      image: './assets/birthday_parties.jpg',
       badge: `SRI ${compositeSriResult.sri}% Safe`,
       metric: `${overallOccupancyPct}% Occupancy`,
       actionTab: 'prediction'
@@ -172,7 +172,7 @@ export function GoldenAuraHero({ onNavigate }) {
                 }}
               >
                 <img 
-                  src="/assets/hero_ballroom.jpg" 
+                  src="./assets/hero_ballroom.jpg" 
                   alt="Golden Aura Grand Ballroom" 
                   style={{
                     width: '100%',
