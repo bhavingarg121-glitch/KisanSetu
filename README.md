@@ -294,6 +294,35 @@ To connect to your live Google Cloud Firebase project:
 
 ---
 
+## 🚀 Cloud Deployment Guide
+
+CrowdIQ includes pre-configured deployment files for zero-configuration publishing across all leading cloud providers:
+
+### 1. Vercel (Frontend - Recommended)
+- Import the GitHub repository [`sanchitamoundekar13/CrowdIQ`](https://github.com/sanchitamoundekar13/CrowdIQ).
+- Build Command: `npm run build`
+- Output Directory: `dist`
+- The included [`vercel.json`](vercel.json) automatically handles SPA rewrites and asset caching so 404 errors never occur.
+
+### 2. GitHub Pages (Automated via GitHub Actions)
+- Go to your GitHub repository **Settings > Pages**.
+- Under **Build and deployment > Source**, select **GitHub Actions**.
+- The included [`.github/workflows/deploy.yml`](.github/workflows/deploy.yml) will automatically build the Vite production bundle and deploy it with relative asset paths.
+
+### 3. Netlify / Cloudflare Pages
+- Connect repository.
+- Publish directory: `dist`
+- The included [`public/_redirects`](public/_redirects) routes all traffic to `index.html` with HTTP 200.
+
+### 4. Render / Railway (Fullstack or FastAPI Backend)
+- Deploy FastAPI Web Service with the included [`render.yaml`](render.yaml) or [`Procfile`](Procfile):
+  ```bash
+  uvicorn backend.main:app --host 0.0.0.0 --port $PORT
+  ```
+- Set `VITE_API_BASE_URL` in your frontend environment to connect it to your deployed backend. If no backend URL is set, the frontend operates autonomously in client-side AI simulation mode.
+
+---
+
 ## 📚 Project Documentation
 
 - [**Operational Project Report (OPR.md)**](OPR.md): Full operational specification, disaster management SOPs, state transition diagrams, and deployment runbook.
