@@ -1,54 +1,51 @@
-import React, { useState, useEffect } from 'react';
-import { ThemeProvider } from './context/ThemeContext';
-import { AuthProvider, useAuth } from './context/AuthContext';
-import { CrowdDataProvider } from './context/CrowdDataContext';
+import React, { useState } from 'react';
+import { SimulationProvider } from './context/SimulationContext';
+import { Sidebar } from './components/layout/Sidebar.tsx';
+import { Navbar } from './components/layout/Navbar.tsx';
+import { ToastContainer } from './components/common/ToastContainer.tsx';
+import { EmergencyOverlay } from './components/emergency/EmergencyOverlay.tsx';
 
-// Landing Page Components (matching reference design)
+// Product Landing Page Components (matching reference design)
 import { CrowdGuardNavbar } from './components/landing/CrowdGuardNavbar';
 import { CrowdGuardHero } from './components/landing/CrowdGuardHero';
 import { HowItWorksSection } from './components/landing/HowItWorksSection';
 import { RequestDemoModal } from './components/landing/RequestDemoModal';
 
-// Live Command Center Components
-import { Navbar } from './components/layout/Navbar';
-import { Sidebar } from './components/layout/Sidebar';
-import { MetricsGrid } from './components/dashboard/MetricsGrid';
-import { HeatmapCanvas } from './components/dashboard/HeatmapCanvas';
-import { CameraFeedGrid } from './components/dashboard/CameraFeedGrid';
-import { AlertsPanel } from './components/dashboard/AlertsPanel';
-import { PeakForecastChart } from './components/prediction/PeakForecastChart';
-import { BottleneckAnalyzer } from './components/prediction/BottleneckAnalyzer';
-import { SmartRouteMap } from './components/routing/SmartRouteMap';
-import { ZoneTrafficTable } from './components/routing/ZoneTrafficTable';
-import { PassGenerator } from './components/ticketing/PassGenerator';
-import { QRScannerTerminal } from './components/ticketing/QRScannerTerminal';
-import { EmergencyBroadcast } from './components/emergency/EmergencyBroadcast';
-import { IncidentDispatch } from './components/emergency/IncidentDispatch';
-import { SurgeSimulator } from './components/sandbox/SurgeSimulator';
-import { AttendeePortal } from './components/attendee/AttendeePortal';
+// Command Center Pages
+import { CommandCenterPage } from './pages/CommandCenterPage.tsx';
+import { LiveCamerasPage } from './pages/LiveCamerasPage.tsx';
+import { VenueMapPage } from './pages/VenueMapPage.tsx';
+import { AlertsPage } from './pages/AlertsPage.tsx';
+import { PredictionsPage } from './pages/PredictionsPage.tsx';
+import { AnalyticsPage } from './pages/AnalyticsPage.tsx';
+import { SecurityTeamsPage } from './pages/SecurityTeamsPage.tsx';
+import { SettingsPage } from './pages/SettingsPage.tsx';
 
-import { Shield, ArrowLeft, Activity, Radio, ExternalLink } from 'lucide-react';
+import { Shield, ArrowLeft } from 'lucide-react';
 
-function MainApp() {
+function AppContent() {
   const [viewMode, setViewMode] = useState('landing'); // 'landing' | 'console'
-  const [activeTab, setActiveTab] = useState('dashboard');
+  const [currentPage, setCurrentPage] = useState('command-center');
   const [isDemoModalOpen, setIsDemoModalOpen] = useState(false);
   const [activeSection, setActiveSection] = useState('product');
-  const { currentRole } = useAuth();
 
-  // Adapt view if role changes in console mode
-  useEffect(() => {
-    if (viewMode === 'console') {
-      if (currentRole.id === 'attendee') {
-        setActiveTab('attendee');
-      } else if (currentRole.id === 'security_guard') {
-        setActiveTab('ticketing');
-      }
-    }
-  }, [currentRole.id, viewMode]);
-
-  const handleLaunchConsole = (tab = 'dashboard') => {
-    setActiveTab(tab);
+  const handleLaunchConsole = (page = 'command-center') => {
+    // Map feature shortcuts to pages
+    const pageMap = {
+      'dashboard': 'command-center',
+      'command-center': 'command-center',
+      'live-cameras': 'live-cameras',
+      'prediction': 'predictions',
+      'predictions': 'predictions',
+      'routing': 'venue-map',
+      'venue-map': 'venue-map',
+      'emergency': 'alerts',
+      'alerts': 'alerts',
+      'analytics': 'analytics',
+      'security-teams': 'security-teams',
+      'settings': 'settings'
+    };
+    setCurrentPage(pageMap[page] || 'command-center');
     setViewMode('console');
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
@@ -66,8 +63,31 @@ function MainApp() {
     }, 50);
   };
 
+  const renderPage = () => {
+    switch (currentPage) {
+      case 'command-center':
+        return <CommandCenterPage />;
+      case 'live-cameras':
+        return <LiveCamerasPage />;
+      case 'venue-map':
+        return <VenueMapPage />;
+      case 'alerts':
+        return <AlertsPage />;
+      case 'predictions':
+        return <PredictionsPage />;
+      case 'analytics':
+        return <AnalyticsPage />;
+      case 'security-teams':
+        return <SecurityTeamsPage />;
+      case 'settings':
+        return <SettingsPage />;
+      default:
+        return <CommandCenterPage />;
+    }
+  };
+
   return (
-    <div className="app-container">
+    <div className="min-h-screen">
       {/* ===================================================================
           1. PRODUCT OVERVIEW MODE (Matches Reference Image Exactly)
           =================================================================== */}
@@ -76,7 +96,7 @@ function MainApp() {
           {/* Top SaaS Header */}
           <CrowdGuardNavbar 
             onOpenDemoModal={() => setIsDemoModalOpen(true)}
-            onLaunchConsole={() => handleLaunchConsole('dashboard')}
+            onLaunchConsole={() => handleLaunchConsole('command-center')}
             activeSection={activeSection}
             onNavigateSection={handleNavigateSection}
           />
@@ -85,7 +105,7 @@ function MainApp() {
             {/* Hero Section with AI Computer Vision Screen */}
             <CrowdGuardHero 
               onOpenDemoModal={() => setIsDemoModalOpen(true)}
-              onViewLiveDemo={() => handleLaunchConsole('dashboard')}
+              onViewLiveDemo={() => handleLaunchConsole('command-center')}
             />
 
             {/* How CrowdGuard Works & 4 Feature Showcase Cards */}
@@ -106,7 +126,7 @@ function MainApp() {
               </p>
               <div style={{ display: 'flex', gap: '1.25rem', fontSize: '0.82rem', color: '#64748b' }}>
                 <span style={{ cursor: 'pointer' }} onClick={() => setIsDemoModalOpen(true)}>Security Architecture</span>
-                <span style={{ cursor: 'pointer' }} onClick={() => handleLaunchConsole('dashboard')}>Command Center</span>
+                <span style={{ cursor: 'pointer' }} onClick={() => handleLaunchConsole('command-center')}>Command Center</span>
               </div>
             </div>
           </footer>
@@ -115,121 +135,61 @@ function MainApp() {
           <RequestDemoModal 
             isOpen={isDemoModalOpen} 
             onClose={() => setIsDemoModalOpen(false)}
-            onLaunchConsole={() => handleLaunchConsole('dashboard')}
+            onLaunchConsole={() => handleLaunchConsole('command-center')}
           />
         </div>
       ) : (
         /* ===================================================================
            2. LIVE COMMAND CENTER / OPERATIONAL CONSOLE MODE
            =================================================================== */
-        <div style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
+        <div className="flex flex-col min-h-screen bg-[#080c14] text-slate-100 font-sans">
           {/* Quick Header Banner to return to Landing */}
-          <div className="console-banner">
-            <div style={{ display: 'flex', alignItems: 'center', gap: '0.85rem' }}>
+          <div className="bg-[#0b192c] border-b border-slate-800 px-6 py-2.5 flex justify-between items-center text-xs">
+            <div className="flex items-center gap-3">
               <button 
                 onClick={() => setViewMode('landing')}
-                style={{
-                  background: 'rgba(255, 255, 255, 0.12)',
-                  border: '1px solid rgba(255, 255, 255, 0.25)',
-                  color: '#ffffff',
-                  padding: '0.35rem 0.75rem',
-                  borderRadius: '6px',
-                  cursor: 'pointer',
-                  display: 'flex',
-                  alignItems: 'center',
-                  gap: '0.4rem',
-                  fontSize: '0.78rem',
-                  fontWeight: 600,
-                  transition: 'background 0.15s ease'
-                }}
+                className="bg-slate-800/80 hover:bg-slate-700 text-white px-3 py-1.5 rounded-md flex items-center gap-1.5 font-medium transition cursor-pointer"
                 title="Return to CrowdGuard AI Product Page"
               >
-                <ArrowLeft size={14} /> Back to Overview
+                <ArrowLeft size={13} /> Back to Product Overview
               </button>
-              <span style={{ display: 'flex', alignItems: 'center', gap: '0.45rem', fontSize: '0.82rem', color: '#cbd5e1' }}>
-                <span style={{ width: 8, height: 8, borderRadius: '50%', background: '#10b981', display: 'inline-block', boxShadow: '0 0 8px #10b981' }}></span>
-                CrowdGuard AI Command Center • Live Telemetry Stream
+              <span className="flex items-center gap-2 text-slate-300 font-medium">
+                <span className="w-2 h-2 rounded-full bg-emerald-500 shadow-[0_0_8px_#10b981]"></span>
+                CrowdGuard AI Command Center • Live Telemetry Active
               </span>
             </div>
 
-            <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', fontSize: '0.78rem' }}>
+            <div className="flex items-center gap-3">
               <button 
                 onClick={() => setIsDemoModalOpen(true)}
-                style={{
-                  background: '#0066ff',
-                  border: 'none',
-                  color: '#ffffff',
-                  padding: '0.3rem 0.75rem',
-                  borderRadius: '6px',
-                  fontWeight: 600,
-                  cursor: 'pointer'
-                }}
+                className="bg-blue-600 hover:bg-blue-500 text-white px-3 py-1.5 rounded-md font-semibold cursor-pointer transition"
               >
                 Request Custom Deployment
               </button>
             </div>
           </div>
 
-          <Navbar activeTab={activeTab} setActiveTab={setActiveTab} />
-          
-          <div className="main-content-layout">
-            <Sidebar activeTab={activeTab} setActiveTab={setActiveTab} />
+          <div className="flex flex-1 min-h-0">
+            {/* Fixed Left Navigation Sidebar */}
+            <Sidebar currentPage={currentPage} onSelectPage={setCurrentPage} />
 
-            <main className="workspace-area">
-              {activeTab === 'dashboard' && (
-                <div>
-                  <MetricsGrid />
-                  <HeatmapCanvas />
-                  <CameraFeedGrid />
-                  <AlertsPanel onDispatchClick={() => setActiveTab('emergency')} />
-                </div>
-              )}
-
-              {activeTab === 'prediction' && (
-                <div>
-                  <PeakForecastChart />
-                  <BottleneckAnalyzer onRerouteClick={() => setActiveTab('routing')} />
-                </div>
-              )}
-
-              {activeTab === 'routing' && (
-                <div>
-                  <SmartRouteMap />
-                  <ZoneTrafficTable />
-                </div>
-              )}
-
-              {activeTab === 'ticketing' && (
-                <div>
-                  <QRScannerTerminal />
-                  <PassGenerator />
-                </div>
-              )}
-
-              {activeTab === 'emergency' && (
-                <div>
-                  <EmergencyBroadcast />
-                  <IncidentDispatch />
-                </div>
-              )}
-
-              {activeTab === 'sandbox' && (
-                <div>
-                  <SurgeSimulator />
-                  <MetricsGrid />
-                  <HeatmapCanvas />
-                </div>
-              )}
-
-              {activeTab === 'attendee' && (
-                <div>
-                  <AttendeePortal />
-                </div>
-              )}
-            </main>
+            {/* Main Command Center Viewport */}
+            <div className="flex-1 flex flex-col min-w-0">
+              <Navbar />
+              
+              <main className="flex-1 p-6 overflow-y-auto max-w-[1720px] w-full mx-auto">
+                {renderPage()}
+              </main>
+            </div>
           </div>
 
-          {/* Lead Capture Modal available in console too */}
+          {/* Emergency Overlay Modal */}
+          <EmergencyOverlay />
+
+          {/* Global Real-time Toast Stack */}
+          <ToastContainer />
+
+          {/* Lead Capture Modal available in console */}
           <RequestDemoModal 
             isOpen={isDemoModalOpen} 
             onClose={() => setIsDemoModalOpen(false)}
@@ -243,12 +203,8 @@ function MainApp() {
 
 export default function App() {
   return (
-    <ThemeProvider>
-      <AuthProvider>
-        <CrowdDataProvider>
-          <MainApp />
-        </CrowdDataProvider>
-      </AuthProvider>
-    </ThemeProvider>
+    <SimulationProvider>
+      <AppContent />
+    </SimulationProvider>
   );
 }
