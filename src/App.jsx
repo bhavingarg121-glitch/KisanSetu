@@ -1,125 +1,73 @@
-import React, { useState, useEffect } from 'react';
-import { ThemeProvider } from './context/ThemeContext';
-import { AuthProvider, useAuth } from './context/AuthContext';
-import { CrowdDataProvider, useCrowdData } from './context/CrowdDataContext';
-import { Navbar } from './components/layout/Navbar';
-import { Sidebar } from './components/layout/Sidebar';
+import React, { useState } from 'react';
+import { SimulationProvider } from './context/SimulationContext';
+import { Sidebar } from './components/layout/Sidebar.tsx';
+import { Navbar } from './components/layout/Navbar.tsx';
+import { ToastContainer } from './components/common/ToastContainer.tsx';
+import { EmergencyOverlay } from './components/emergency/EmergencyOverlay.tsx';
 
-// Dashboard components
-import { GoldenAuraHero } from './components/dashboard/GoldenAuraHero';
-import { MetricsGrid } from './components/dashboard/MetricsGrid';
-import { HeatmapCanvas } from './components/dashboard/HeatmapCanvas';
-import { CameraFeedGrid } from './components/dashboard/CameraFeedGrid';
-import { AlertsPanel } from './components/dashboard/AlertsPanel';
+// Pages
+import { CommandCenterPage } from './pages/CommandCenterPage.tsx';
+import { LiveCamerasPage } from './pages/LiveCamerasPage.tsx';
+import { VenueMapPage } from './pages/VenueMapPage.tsx';
+import { AlertsPage } from './pages/AlertsPage.tsx';
+import { PredictionsPage } from './pages/PredictionsPage.tsx';
+import { AnalyticsPage } from './pages/AnalyticsPage.tsx';
+import { SecurityTeamsPage } from './pages/SecurityTeamsPage.tsx';
+import { SettingsPage } from './pages/SettingsPage.tsx';
 
-// Prediction & Heuristics
-import { PeakForecastChart } from './components/prediction/PeakForecastChart';
-import { BottleneckAnalyzer } from './components/prediction/BottleneckAnalyzer';
+function AppContent() {
+  const [currentPage, setCurrentPage] = useState('command-center');
 
-// Routing & Flow
-import { SmartRouteMap } from './components/routing/SmartRouteMap';
-import { ZoneTrafficTable } from './components/routing/ZoneTrafficTable';
-
-// Ticketing & QR
-import { PassGenerator } from './components/ticketing/PassGenerator';
-import { QRScannerTerminal } from './components/ticketing/QRScannerTerminal';
-
-// Emergency Management
-import { EmergencyBroadcast } from './components/emergency/EmergencyBroadcast';
-import { IncidentDispatch } from './components/emergency/IncidentDispatch';
-
-// Simulation Sandbox
-import { SurgeSimulator } from './components/sandbox/SurgeSimulator';
-
-// Attendee View
-import { AttendeePortal } from './components/attendee/AttendeePortal';
-
-function MainApp() {
-  const [activeTab, setActiveTab] = useState('dashboard');
-  const { currentRole } = useAuth();
-
-  // Adapt view if role changes
-  useEffect(() => {
-    if (currentRole.id === 'attendee') {
-      setActiveTab('attendee');
-    } else if (currentRole.id === 'security_guard') {
-      setActiveTab('ticketing');
+  const renderPage = () => {
+    switch (currentPage) {
+      case 'command-center':
+        return <CommandCenterPage />;
+      case 'live-cameras':
+        return <LiveCamerasPage />;
+      case 'venue-map':
+        return <VenueMapPage />;
+      case 'alerts':
+        return <AlertsPage />;
+      case 'predictions':
+        return <PredictionsPage />;
+      case 'analytics':
+        return <AnalyticsPage />;
+      case 'security-teams':
+        return <SecurityTeamsPage />;
+      case 'settings':
+        return <SettingsPage />;
+      default:
+        return <CommandCenterPage />;
     }
-  }, [currentRole.id]);
+  };
 
   return (
-    <div className="app-container">
-      <Navbar activeTab={activeTab} setActiveTab={setActiveTab} />
-      
-      <div className="main-content-layout">
-        <Sidebar activeTab={activeTab} setActiveTab={setActiveTab} />
+    <div className="flex min-h-screen bg-[#080c14] text-slate-100 font-sans">
+      {/* Fixed Left Navigation Sidebar */}
+      <Sidebar currentPage={currentPage} onSelectPage={setCurrentPage} />
 
-        <main className="workspace-area">
-          {activeTab === 'dashboard' && (
-            <div>
-              <GoldenAuraHero onNavigate={setActiveTab} />
-              <MetricsGrid />
-              <HeatmapCanvas />
-              <CameraFeedGrid />
-              <AlertsPanel onDispatchClick={() => setActiveTab('emergency')} />
-            </div>
-          )}
-
-          {activeTab === 'prediction' && (
-            <div>
-              <PeakForecastChart />
-              <BottleneckAnalyzer onRerouteClick={() => setActiveTab('routing')} />
-            </div>
-          )}
-
-          {activeTab === 'routing' && (
-            <div>
-              <SmartRouteMap />
-              <ZoneTrafficTable />
-            </div>
-          )}
-
-          {activeTab === 'ticketing' && (
-            <div>
-              <QRScannerTerminal />
-              <PassGenerator />
-            </div>
-          )}
-
-          {activeTab === 'emergency' && (
-            <div>
-              <EmergencyBroadcast />
-              <IncidentDispatch />
-            </div>
-          )}
-
-          {activeTab === 'sandbox' && (
-            <div>
-              <SurgeSimulator />
-              <MetricsGrid />
-              <HeatmapCanvas />
-            </div>
-          )}
-
-          {activeTab === 'attendee' && (
-            <div>
-              <AttendeePortal />
-            </div>
-          )}
+      {/* Main Command Center Viewport */}
+      <div className="flex-1 flex flex-col min-w-0">
+        <Navbar />
+        
+        <main className="flex-1 p-6 overflow-y-auto max-w-[1720px] w-full mx-auto">
+          {renderPage()}
         </main>
       </div>
+
+      {/* Emergency Overlay Modal */}
+      <EmergencyOverlay />
+
+      {/* Global Real-time Toast Stack */}
+      <ToastContainer />
     </div>
   );
 }
 
 export default function App() {
   return (
-    <ThemeProvider>
-      <AuthProvider>
-        <CrowdDataProvider>
-          <MainApp />
-        </CrowdDataProvider>
-      </AuthProvider>
-    </ThemeProvider>
+    <SimulationProvider>
+      <AppContent />
+    </SimulationProvider>
   );
 }
