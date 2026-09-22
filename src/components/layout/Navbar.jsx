@@ -91,31 +91,31 @@ export function Navbar({ activeTab, setActiveTab }) {
           <div style={{ 
             width: '38px', 
             height: '38px', 
-            borderRadius: '12px', 
-            background: isGoldenAura ? 'var(--accent-gold-gradient)' : 'linear-gradient(135deg, #0284c7, #0f172a)', 
-            border: `1px solid ${isGoldenAura ? 'var(--accent-gold)' : '#38bdf8'}`,
+            borderRadius: '10px', 
+            background: 'linear-gradient(135deg, #0066ff, #0284c7)', 
+            border: '1px solid rgba(0, 102, 255, 0.4)',
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
-            boxShadow: isGoldenAura ? 'var(--glow-gold)' : '0 0 15px rgba(56, 189, 248, 0.4)'
+            boxShadow: '0 4px 12px rgba(0, 102, 255, 0.3)'
           }}>
             <ShieldAlert size={22} color="#ffffff" />
           </div>
           <div>
             <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-              <span className="font-display" style={{ fontSize: '1.25rem', fontWeight: 800, letterSpacing: '0.04em', color: 'var(--text-primary)' }}>
-                CROWD<span style={{ color: 'var(--accent-gold)' }}>PULSE</span>
+              <span style={{ fontSize: '1.25rem', fontWeight: 800, letterSpacing: '-0.02em', color: 'var(--brand-navy, #0b192c)' }}>
+                CrowdGuard<span style={{ color: '#0066ff', fontWeight: 700 }}>AI</span>
               </span>
               <span className="cyber-badge cyber-badge-emerald" style={{ fontSize: '0.65rem' }}>
                 <span style={{ width: '6px', height: '6px', borderRadius: '50%', background: '#059669', display: 'inline-block' }}></span>
                 ONLINE
               </span>
-              <span className={`cyber-badge ${isGoldenAura ? 'cyber-badge-gold' : 'cyber-badge-purple'}`} style={{ fontSize: '0.62rem' }}>
+              <span className="cyber-badge" style={{ fontSize: '0.62rem', background: '#eff6ff', color: '#0066ff', border: '1px solid #bfdbfe' }}>
                 FastAPI + PyTorch AI
               </span>
             </div>
-            <div className="font-mono" style={{ fontSize: '0.72rem', color: 'var(--text-secondary)' }}>
-              AI Crowd Management & Safety System
+            <div style={{ fontSize: '0.72rem', color: '#64748b' }}>
+              Proactive Crowd Safety Platform
             </div>
           </div>
         </div>
