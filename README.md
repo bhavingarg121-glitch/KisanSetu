@@ -14,8 +14,8 @@
 
 
 > ### 🌾 **Featured Portal: KisanSetu (National MSP Procurement & Agri-Inputs Payment Manager)**
-> **Live GitHub Pages URL:** [https://sanchitamoundekar13.github.io/CrowdIQ/](https://sanchitamoundekar13.github.io/CrowdIQ/)
-> *(Direct link: [SIH_AGRICULTURE.html](https://sanchitamoundekar13.github.io/CrowdIQ/SIH_AGRICULTURE.html) | [agriculture.html](https://sanchitamoundekar13.github.io/CrowdIQ/agriculture.html))*
+> **Live GitHub Pages URL:** [https://bhavingarg121-glitch.github.io/KisanSetu/](https://bhavingarg121-glitch.github.io/KisanSetu/)
+> *(Direct link: [SIH_AGRICULTURE.html](https://bhavingarg121-glitch.github.io/KisanSetu/SIH_AGRICULTURE.html) | Mirror: [CrowdIQ Pages](https://sanchitamoundekar13.github.io/CrowdIQ/))*
 > 
 > - **📦 Procurement & Payment Status Manager:** Track farmer fertilizer purchases, order history, and progressive fulfillment.
 > - **💳 Multi-Modal Payment Gateway:** Integrated UPI (dynamic QR & timer), Kisan Credit Card (KCC), DBT e-RUPI vouchers, and Net Banking.
@@ -159,7 +159,7 @@ graph TB
 | **Backend** | Python 3.14, FastAPI, Uvicorn | High-concurrency ASGI REST server and WebSocket streaming hub |
 | **AI / ML** | PyTorch 2.x, NumPy, Scikit-Learn | Tensor density mapping, directional turbulence, LSTM time-series forecast |
 | **Database** | Firebase Firestore (`firebase-admin`) | Digital pass registry, alerts, zone states, with in-memory emulator fallback |
-| **Version Control** | Git / GitHub | Remote repository at `sanchitamoundekar13/CrowdIQ` |
+| **Version Control** | Git / GitHub | Remote repository at `bhavingarg121-glitch/KisanSetu` (Collaborator: `sanchitamoundekar13`) |
 
 ---
 
@@ -235,8 +235,8 @@ CrowdIQ/
 
 ### 1. Clone Repository
 ```powershell
-git clone https://github.com/sanchitamoundekar13/CrowdIQ.git
-cd CrowdIQ
+git clone https://github.com/bhavingarg121-glitch/KisanSetu.git
+cd KisanSetu
 ```
 
 ### 2. Start Python FastAPI Backend (Port 8000)
@@ -310,7 +310,7 @@ To connect to your live Google Cloud Firebase project:
 CrowdIQ includes pre-configured deployment files for zero-configuration publishing across all leading cloud providers:
 
 ### 1. Vercel (Frontend - Recommended)
-- Import the GitHub repository [`sanchitamoundekar13/CrowdIQ`](https://github.com/sanchitamoundekar13/CrowdIQ).
+- Import the GitHub repository [`bhavingarg121-glitch/KisanSetu`](https://github.com/bhavingarg121-glitch/KisanSetu).
 - Build Command: `npm run build`
 - Output Directory: `dist`
 - The included [`vercel.json`](vercel.json) automatically handles SPA rewrites and asset caching so 404 errors never occur.
