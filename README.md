@@ -1,17 +1,16 @@
 <div align="center">
 
-# 🛡️ CrowdIQ
-### AI-Powered Crowd Management & Stampede Prevention Platform
+# 🌾 KisanSetu
+### National MSP Procurement & Subsidized Agri-Inputs Portal | Government of India
 
+[![React](https://img.shields.io/badge/Frontend-React%2018%20%2B%20TailwindCSS-10b981?style=for-the-badge&logo=react&logoColor=white)](https://react.dev)
+[![PostgreSQL](https://img.shields.io/badge/Database-PostgreSQL%2016-336791?style=for-the-badge&logo=postgresql&logoColor=white)](https://www.postgresql.org/)
 [![FastAPI](https://img.shields.io/badge/Backend-FastAPI-009688?style=for-the-badge&logo=fastapi&logoColor=white)](https://fastapi.tiangolo.com)
-[![PyTorch](https://img.shields.io/badge/AI%2FML-PyTorch-EE4C2C?style=for-the-badge&logo=pytorch&logoColor=white)](https://pytorch.org)
-[![Firebase](https://img.shields.io/badge/Database-Firebase%20Firestore-FFCA28?style=for-the-badge&logo=firebase&logoColor=black)](https://firebase.google.com)
-[![React](https://img.shields.io/badge/Frontend-React%2019%20%2B%20Vite-61DAFB?style=for-the-badge&logo=react&logoColor=black)](https://react.dev)
 [![License](https://img.shields.io/badge/License-MIT-green.svg?style=for-the-badge)](LICENSE)
 
-**Predictive Crowd Dynamics • Edge Computer Vision • Real-Time Spatial Heatmaps • Stampede Early Warning • Dynamic Egress Rerouting • Cryptographic QR Turnstiles**
+**Farmer Fertilizer Procurement • Order History Tracking • Multi-Modal Payments (UPI/KCC/e-RUPI) • Live GPS Transit Map • Form 3-B Tax Invoices**
 
-[Explore Live UI (Local)](http://localhost:5173/) • [API Interactive Docs](http://127.0.0.1:8000/docs) • [Operational Project Report (OPR)](OPR.md) • [Technical Requirements Document (TRD)](TRD.md)
+[Explore Live Portal](https://sanchitamoundekar13.github.io/CrowdIQ/) • [Direct Standalone App](https://sanchitamoundekar13.github.io/CrowdIQ/SIH_AGRICULTURE.html)
 
 
 > ### 🌾 **Featured Portal: KisanSetu (National MSP Procurement & Agri-Inputs Payment Manager)**
