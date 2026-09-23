@@ -4,7 +4,7 @@ import tailwindcss from '@tailwindcss/vite'
 
 // https://vite.dev/config/
 export default defineConfig({
-  base: process.env.GITHUB_ACTIONS || process.env.CI ? '/CrowdIQ/' : './',
+  base: process.env.GITHUB_ACTIONS || process.env.CI ? '/kisansetu-procurement-portal/' : './',
   plugins: [
     react(),
     tailwindcss(),

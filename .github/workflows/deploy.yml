@@ -1,4 +1,4 @@
-name: Deploy CrowdIQ to GitHub Pages
+name: Deploy KisanSetu Procurement Portal to GitHub Pages
 
 on:
   push:
