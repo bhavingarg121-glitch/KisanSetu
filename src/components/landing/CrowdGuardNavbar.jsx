@@ -96,6 +96,15 @@ export function CrowdGuardNavbar({ onOpenDemoModal, onLaunchConsole, activeSecti
 
         {/* CTA Actions */}
         <div className="cg-header-actions">
+          <a 
+            href="./SIH_AGRICULTURE.html" 
+            className="cg-btn-secondary" 
+            style={{ borderColor: '#10B981', color: '#10B981', textDecoration: 'none', display: 'flex', alignItems: 'center', gap: '6px' }}
+            title="Open KisanSetu Subsidized Agri-Inputs and Procurement Portal"
+          >
+            <span>🌾</span>
+            <span>KisanSetu Portal</span>
+          </a>
           <button 
             className="cg-btn-secondary" 
             onClick={onLaunchConsole}

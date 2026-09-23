@@ -13,7 +13,19 @@
 
 [Explore Live UI (Local)](http://localhost:5173/) • [API Interactive Docs](http://127.0.0.1:8000/docs) • [Operational Project Report (OPR)](OPR.md) • [Technical Requirements Document (TRD)](TRD.md)
 
+
+> ### 🌾 **Featured Portal: KisanSetu (National MSP Procurement & Agri-Inputs Payment Manager)**
+> **Live GitHub Pages URL:** [https://sanchitamoundekar13.github.io/CrowdIQ/SIH_AGRICULTURE.html](https://sanchitamoundekar13.github.io/CrowdIQ/SIH_AGRICULTURE.html)
+> *(Alternative mirror: [agriculture.html](https://sanchitamoundekar13.github.io/CrowdIQ/agriculture.html))*
+> 
+> - **📦 Procurement & Payment Status Manager:** Track farmer fertilizer purchases, order history, and progressive fulfillment.
+> - **💳 Multi-Modal Payment Gateway:** Integrated UPI (dynamic QR & timer), Kisan Credit Card (KCC), DBT e-RUPI vouchers, and Net Banking.
+> - **🚚 Live Route Map & GPS Logistics Tracker:** Real-time visual transit route from PACS depot to farmer farm with speed, ETA, and delivery OTP.
+> - **🧾 Official Form 3-B Tax Invoice:** Digitally signed GST invoice and central subsidy breakdown.
+> - **🐘 PostgreSQL 16 Enterprise Schema:** Relational DDL for `agri_input_orders`, `payment_transactions`, and Mandi queues in `database/schema.sql`.
+
 ---
+
 
 </div>
 
