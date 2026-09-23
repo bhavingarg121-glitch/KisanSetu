@@ -1,348 +1,357 @@
 <div align="center">
 
-# 🌾 KisanSetu
-### National MSP Procurement & Subsidized Agri-Inputs Portal | Government of India
+# 🌾 KisanSetu (किसानसेतु)
+### National MSP Procurement & Subsidized Agri-Inputs Portal
+**Ministry of Agriculture & Farmers Welfare • Ministry of Chemicals & Fertilizers • Government of India**
 
 [![React](https://img.shields.io/badge/Frontend-React%2018%20%2B%20TailwindCSS-10b981?style=for-the-badge&logo=react&logoColor=white)](https://react.dev)
-[![PostgreSQL](https://img.shields.io/badge/Database-PostgreSQL%2016-336791?style=for-the-badge&logo=postgresql&logoColor=white)](https://www.postgresql.org/)
-[![FastAPI](https://img.shields.io/badge/Backend-FastAPI-009688?style=for-the-badge&logo=fastapi&logoColor=white)](https://fastapi.tiangolo.com)
-[![License](https://img.shields.io/badge/License-MIT-green.svg?style=for-the-badge)](LICENSE)
+[![PostgreSQL](https://img.shields.io/badge/Database-PostgreSQL%2016.2-336791?style=for-the-badge&logo=postgresql&logoColor=white)](https://www.postgresql.org/)
+[![Node.js](https://img.shields.io/badge/Server-Node.js%20%2F%20Express-339933?style=for-the-badge&logo=nodedotjs&logoColor=white)](https://nodejs.org/)
+[![DBT Bharat](https://img.shields.io/badge/Direct%20Benefit%20Transfer-DBT%20e--RUPI-orange?style=for-the-badge)](https://dbtbharat.gov.in/)
+[![PMKSK](https://img.shields.io/badge/Pradhan%20Mantri-Kisan%20Samriddhi%20Kendra-green?style=for-the-badge)](https://agricoop.nic.in/)
+[![License](https://img.shields.io/badge/License-MIT-blue.svg?style=for-the-badge)](LICENSE)
 
-**Farmer Fertilizer Procurement • Order History Tracking • Multi-Modal Payments (UPI/KCC/e-RUPI) • Live GPS Transit Map • Form 3-B Tax Invoices**
+**Empowering Indian Farmers with Transparent MSP Crop Procurement, Subsidized Fertilizer Order Management, Multi-Modal Digital Payments, and Live GPS Fleet Tracking.**
 
-[Explore Live Portal](https://sanchitamoundekar13.github.io/CrowdIQ/) • [Direct Standalone App](https://sanchitamoundekar13.github.io/CrowdIQ/SIH_AGRICULTURE.html)
-
-
-> ### 🌾 **Featured Portal: KisanSetu (National MSP Procurement & Agri-Inputs Payment Manager)**
-> **Live GitHub Pages URL:** [https://bhavingarg121-glitch.github.io/KisanSetu/](https://bhavingarg121-glitch.github.io/KisanSetu/)
-> *(Direct link: [SIH_AGRICULTURE.html](https://bhavingarg121-glitch.github.io/KisanSetu/SIH_AGRICULTURE.html) | Mirror: [CrowdIQ Pages](https://sanchitamoundekar13.github.io/CrowdIQ/))*
-> 
-> - **📦 Procurement & Payment Status Manager:** Track farmer fertilizer purchases, order history, and progressive fulfillment.
-> - **💳 Multi-Modal Payment Gateway:** Integrated UPI (dynamic QR & timer), Kisan Credit Card (KCC), DBT e-RUPI vouchers, and Net Banking.
-> - **🚚 Live Route Map & GPS Logistics Tracker:** Real-time visual transit route from PACS depot to farmer farm with speed, ETA, and delivery OTP.
-> - **🧾 Official Form 3-B Tax Invoice:** Digitally signed GST invoice and central subsidy breakdown.
-> - **🐘 PostgreSQL 16 Enterprise Schema:** Relational DDL for `agri_input_orders`, `payment_transactions`, and Mandi queues in `database/schema.sql`.
+[🌐 Explore Live Portal](https://bhavingarg121-glitch.github.io/KisanSetu/) • [📱 Direct Standalone Single-File App](https://bhavingarg121-glitch.github.io/KisanSetu/SIH_AGRICULTURE.html) • [🐘 PostgreSQL Schema](database/schema.sql)
 
 ---
-
 
 </div>
 
 ## 📌 Table of Contents
-- [Executive Overview](#-executive-overview)
+- [Executive Summary & Problem Statement](#-executive-summary--problem-statement)
 - [System Architecture](#-system-architecture)
-- [Key Features](#-key-features)
-  - [1. Operations Command Center](#1-operations-command-center)
-  - [2. Stampede Risk Index (SRI) & Predictive AI](#2-stampede-risk-index-sri--predictive-ai)
-  - [3. Smart Wayfinding & Dynamic Evacuation](#3-smart-wayfinding--dynamic-evacuation)
-  - [4. QR Turnstile Access Control & Anti-Passback](#4-qr-turnstile-access-control--anti-passback)
-  - [5. Acoustic Klaxon & Emergency Speech PA](#5-acoustic-klaxon--emergency-speech-pa)
-  - [6. Chaos Simulation Sandbox & Attendee Mobile Portal](#6-chaos-simulation-sandbox--attendee-mobile-portal)
+- [Key Features & Modules](#-key-features--modules)
+  - [1. 📦 Procurement & Payment Status Manager](#1--procurement--payment-status-manager)
+  - [2. 💳 Multi-Modal Agri-Payment Gateway](#2--multi-modal-agri-payment-gateway)
+  - [3. 🚚 Live Route Map & GPS Fleet Tracking](#3--live-route-map--gps-fleet-tracking)
+  - [4. 🧾 Official Form 3-B Tax Invoice & Receipt](#4--official-form-3-b-tax-invoice--receipt)
+  - [5. 🌾 Farmer Digital Gate Pass & Mandi Queuing](#5--farmer-digital-gate-pass--mandi-queuing)
+  - [6. 🌱 Subsidized Agri-Inputs Store (PMKSK & IFFCO)](#6--subsidized-agri-inputs-store-pmksk--iffco)
+  - [7. ⚖️ Mandi Terminal Operations & Automated Weighbridge](#7-️-mandi-terminal-operations--automated-weighbridge)
+  - [8. 📺 Real-Time Public Yard Display Board](#8--real-time-public-yard-display-board)
+  - [9. 🐘 PostgreSQL 16 Enterprise Relational Schema](#9--postgresql-16-enterprise-relational-schema)
+  - [10. 📶 Offline-First PWA Synchronization](#10--offline-first-pwa-synchronization)
 - [Technology Stack Matrix](#-technology-stack-matrix)
-- [Mathematical & Algorithmic Formulation](#-mathematical--algorithmic-formulation)
-- [Directory Structure](#-directory-structure)
-- [Getting Started & Installation](#-getting-started--installation)
-  - [Prerequisites](#prerequisites)
-  - [Backend Setup (FastAPI & PyTorch)](#1-start-python-fastapi-backend-port-8000)
-  - [Frontend Setup (React & Vite)](#2-start-react-frontend-port-5173)
-- [Firebase Configuration](#-firebase-configuration)
-- [REST API & WebSocket Documentation](#-rest-api--websocket-documentation)
-- [Role-Based Access Control (RBAC)](#-role-based-access-control-rbac)
-- [Project Documentation](#-project-documentation)
+- [Database Schema & Data Models](#-database-schema--data-models)
+- [REST API Endpoints](#-rest-api-endpoints)
+- [Repository Structure](#-repository-structure)
+- [Installation & Local Setup](#-installation--local-setup)
+- [GovTech Compliance & Standards](#-govtech-compliance--standards)
 - [Contributing & License](#-contributing--license)
 
 ---
 
-## 🌟 Executive Overview
+## 🌟 Executive Summary & Problem Statement
 
-Mass gatherings in high-density venues (sports stadiums, concert arenas, religious pilgrimage sites, and transit hubs) present catastrophic safety hazards from sudden surges, compressive asphyxia, and crowd crushes. Traditional crowd management methods are **fundamentally reactive**—security personnel intervene only after bottlenecks cause panic.
+In India, agriculture sustains over 55% of the national workforce. However, smallholder farmers continually face structural bottlenecks:
+1. **Predatory Middlemen & Non-Transparent Procurement**: Farmers often wait days at APMC Mandis without real-time visibility into queue status or MSP rate locks.
+2. **Fertilizer Black-Marketing & Arbitrary Markups**: Subsidized fertilizers (Neem-Coated Urea, DAP, MOP) are frequently hoarded, leaving marginal farmers to buy at extortionate rates without official tax invoices.
+3. **Fragmented Payment Methods & Delayed Subsidies**: Lack of integrated rural payment rails (UPI QR, KCC cards, DBT e-RUPI vouchers) forces farmers into high-interest informal cash debt.
+4. **Logistics Blindspots**: Once fertilizer quotas are ordered from Primary Agricultural Credit Societies (PACS), farmers receive no delivery timeline, leading to wasted transit trips.
 
-**CrowdIQ** is a mission-critical, AI-driven operating system that transitions crowd control into **predictive crowd prevention**. By fusing edge computer-vision telemetry, Fruin Level of Service (LOS) spatial density mapping, a mathematical **Stampede Risk Index (SRI)**, PyTorch neural time-series forecasting, and automated graph-based evacuation rerouting, CrowdIQ enables venue operators to detect micro-shockwaves and dissipate choke points minutes before dangerous crushes can develop.
+### 💡 The Solution: KisanSetu (किसानसेतु)
+**KisanSetu** is an end-to-end, digital governance platform engineered for the **Smart India Hackathon (SIH 2026)**. It unifies **MSP procurement token management**, **subsidized fertilizer sales (PMKSK)**, **multi-modal payments**, **live delivery GPS routing**, and **audit-ready PostgreSQL relational tracking** into a unified, GIGW 3.0-compliant portal.
 
 ---
 
 ## 🏗️ System Architecture
 
 ```mermaid
-graph TB
-    subgraph Client_Tier ["Client Presentation Layer (React 19 + Vite - Port 5173)"]
-        UI["Command Operations Dashboard"]
-        CanvasHeatmap["HTML5 Canvas 2D Density Heatmap (60 FPS)"]
-        CCTVFeeds["CCTV Neural Vision Matrix with Bounding Boxes"]
-        ScannerView["Turnstile QR Scanner & Pass Generator"]
-        AudioSynth["Web Audio Procedural Klaxon & Speech PA"]
-        MobilePortal["Attendee Mobile Companion View"]
+graph TD
+    subgraph "Farmer / Public Layer"
+        F[🌾 Farmer Smartphone / CSC Center] -->|Book Mandi Token & Buy Agri-Inputs| UI[Web Portal / Standalone Single-File PWA]
+        MandiDisplay[📺 Public Mandi Yard Display Board] <--|Real-Time Queue WebSocket| SVR[Node.js / Express REST API]
     end
 
-    subgraph Transport_Tier ["Networking & Transport"]
-        REST_API["REST API (HTTP/2 JSON)"]
-        WS_Stream["Real-Time WebSocket (ws://127.0.0.1:8000/ws/telemetry)"]
+    subgraph "KisanSetu Core Platform"
+        UI -->|React 18 Context State| PM[📦 Procurement & Payment Manager]
+        UI -->|Dynamic QR / KCC / e-RUPI| PG[💳 Multi-Modal Payment Gateway]
+        UI -->|SVG Map & Waypoint Telemetry| GPS[🚚 Live GPS Route Tracker]
+        UI -->|Form 3-B Invoice Generation| INV[🧾 Cryptographic Tax Invoice Engine]
+        UI -->|Offline Queue Sync| SW[📶 Service Worker & IndexedDB]
     end
 
-    subgraph Backend_Tier ["Backend Application Layer (Python FastAPI - Port 8000)"]
-        FastAPI_App["FastAPI Server & Async Event Loop"]
-        DensityEngine["PyTorch CSRNet Density & Vector Model"]
-        LSTMForecaster["PyTorch 2-Layer LSTM Surge Forecaster"]
-        EvacRouter["Dijkstra Dynamic Congestion Wayfinding"]
+    subgraph "Backend & Processing Layer"
+        PM & PG & GPS -->|REST API Requests| SVR
+        SVR -->|Parameterized Queries & Triggers| DB[(🐘 PostgreSQL 16 Enterprise Relational DB)]
+        SVR -->|Payment Webhook & Status Callbacks| NPCI[🇮🇳 NPCI / PFMS / DBT Bharat Gateway]
     end
 
-    subgraph Storage_Tier ["Database & Persistence (Firebase Firestore)"]
-        FirestoreCloud["Google Cloud Firebase Firestore"]
-        FirestoreEmulator["Zero-Config In-Memory Emulator"]
+    subgraph "Logistics & Physical Mandi Infrastructure"
+        SVR -->|Gate Pass Validation| MandiOps[⚖️ Mandi Terminal & Automated Weighbridge]
+        SVR -->|Dispatch Notification| PACS[🏢 Primary Agricultural Credit Societies - PACS Depot]
+        PACS -->|GPS Telemetry Updates| GPS
     end
-
-    UI --> REST_API
-    UI --> WS_Stream
-    CanvasHeatmap --> UI
-    CCTVFeeds --> UI
-    ScannerView --> UI
-    AudioSynth --> UI
-    MobilePortal --> UI
-
-    REST_API <--> FastAPI_App
-    WS_Stream <--> FastAPI_App
-
-    FastAPI_App <--> DensityEngine
-    FastAPI_App <--> LSTMForecaster
-    FastAPI_App <--> EvacRouter
-
-    FastAPI_App <--> FirestoreCloud
-    FastAPI_App <--> FirestoreEmulator
 ```
 
 ---
 
-## 🚀 Key Features
+## 🚀 Key Features & Modules
 
-### 1. Operations Command Center
-- **Interactive Spatial Venue Heatmap**: Canvas-rendered 2D layout of all sectors with real-time radial gradients color-coded by density (Green `<2.0`, Amber `2.0-3.9`, Crimson `≥4.0 p/m²`) and optical flow vector particles showing movement direction.
-- **CCTV Neural Vision Matrix**: 4 multi-camera feeds (`CAM-01` to `CAM-04`) rendering simulated AI bounding boxes, detection confidence tags (`person 98%`), head counts, and optical flow vectors.
-- **Real-Time Incident Alerts**: Live priority queue (`CRITICAL`, `WARNING`, `INFO`) with instant **Acknowledge** and **Tactical Dispatch** actions.
-- **Global Telemetry Bar**: Real-time venue headcount, occupancy %, inflow/outflow velocity (`pax/min`), and composite SRI gauge.
-
-### 2. Stampede Risk Index (SRI) & Predictive AI
-- **Mathematical SRI Formula**: Evaluates density, directional turbulence, velocity stagnation, and surge ratios to compute a real-time hazard score (0–100%).
-- **PyTorch LSTM Peak Forecasting**: Time-series neural network projecting future crowd curves (16:00 to 00:00) with a 90% capacity hazard threshold.
-- **Bottleneck Vulnerability Ranking**: Real-time ranking of sectors most susceptible to choking with automated dissipation recommendations.
-
-### 3. Smart Wayfinding & Dynamic Evacuation
-- **Side-by-Side Corridor Comparison**: Highlights congested arteries (e.g. *Gate A Plaza*: 18 min wait, 4.3 p/m², High Risk) versus AI-recommended relief paths (*West Egress*: <3 min wait, 1.1 p/m², Fluid).
-- **One-Click Reroute Dispatch**: Automatically pushes directional arrows to stadium jumbotrons and attendee mobile passes, relieving arena choke pressure by **42%**.
-- **Zone Traffic & Evacuation Audit**: Complete inventory of zone capacities, flow velocities, and evacuation priority rankings.
-
-### 4. QR Turnstile Access Control & Anti-Passback
-- **Cryptographic Pass Generator**: Generates real, scannable QR tickets (`qrcode` library) with attendee metadata, zone allocation, and downloadable digital passes.
-- **Security Guard Scanner Terminal**: Validates passes instantly and enforces **anti-passback protection** (blocks ticket reuse and duplicate scans).
-- **Integrated Audio Feedback**: Synthesizes chimes for valid admissions and buzzers for rejected/duplicate passes.
-
-### 5. Acoustic Klaxon & Emergency Speech PA
-- **Procedural Warble Klaxon Siren**: Synthesized via Web Audio API dual-oscillator modulation (440Hz–720Hz)—zero external audio files required.
-- **Hardware-Accelerated Voice Broadcast**: Web Speech API (`SpeechSynthesis`) speaks authoritative crowd evacuation announcements.
-- **Digital Signage Ticker Simulator**: Displays real-time instructions as they would appear on venue LED boards.
-- **Tactical Dispatch Board**: Unit positioning (Alpha, Bravo, Charlie, Delta, Medic) and interactive Stampede Mitigation SOP checklist.
-
-### 6. Chaos Simulation Sandbox & Attendee Mobile Portal
-- **Surge Simulation Sandbox**: Allows commanders and evaluators to inject synthetic crowd surges (*Nominal Operations*, *Main Act Finale Surge (+240%)*, *Catastrophic Chokepoint Jam*, *Smart Reroute Dissipation*) and adjust the influx slider (0.5x to 5.0x).
-- **Role-Based Access Control (RBAC)**: Switch between **Incident Commander** (Super Admin), **Field Security Officer**, **Operations Executive**, and **Event Attendee**.
-- **Mobile Attendee Portal**: Responsive smartphone viewport displaying personal tickets, real-time safety notices, and a "Safe Egress Route Finder".
+### 1. 📦 Procurement & Payment Status Manager
+- **Complete Order Lifecycle Tracking**: Full visibility into fertilizer purchases across 5 structured stages:
+  - `Pending Payment` ➔ `Processing / PACS Allocated` ➔ `In Transit / Dispatched` ➔ `Delivered` ➔ `Cancelled / Refunded`.
+- **Category & Search Filters**: Filter purchases by fertilizer type (Urea, DAP, MOP, Bio-NPK, Zinc Sulfate, Micronutrients) or query by Order ID / Token Number.
+- **Real-Time KPI Cards**:
+  - Total Procurement Value (₹)
+  - Central Government Subsidies Claimed (₹)
+  - Total Agri-Inputs Volume Procured (Quintals / Bags)
+  - Pending Action Count
 
 ---
 
-## 🛠️ Technology Stack Matrix
+### 2. 💳 Multi-Modal Agri-Payment Gateway
+Integrated rural digital payment gateway with failover simulation and instant transaction receipts:
+- **Dynamic UPI QR Code**: Real-time generated QR with dynamic transaction reference (`UPI-AGRI-...`), bank resolution metadata, and a live **5-minute countdown expiry timer**.
+- **Kisan Credit Card (KCC) RuPay**: Subsidized credit line checkout featuring automatic 4% interest subvention validation and CVV verification.
+- **DBT e-RUPI Digital Vouchers**: Ministry of Finance purpose-bound vouchers redeemable solely at certified PMKSK input centers.
+- **Net Banking / PFMS Integration**: Direct interbank settlement via NEFT/RTGS with Public Financial Management System tracking.
+- **Cash on Delivery (COD) / PACS Pay**: Guaranteed delivery verification with physical collection at the village cooperative society.
 
-| Layer | Technologies | Description |
+---
+
+### 3. 🚚 Live Route Map & GPS Fleet Tracking
+- **Interactive SVG Vector Map**: Visualizes the logistics transit route from the **PACS Fertilizer Depot** to the farmer's registered land parcel.
+- **Animated GPS Delivery Vehicle**: Dynamic speedometer (`km/h`), heading angle, and progressive waypoint path.
+- **Driver & Dispatch Telemetry**: Driver name, contact phone, vehicle registration plate (e.g., *MH-31-AG-8821*), and dynamic ETA updates.
+- **Tamper-Proof Delivery OTP**: 4-digit verification code sent to the farmer's mobile phone, required by the delivery agent to confirm handover.
+
+---
+
+### 4. 🧾 Official Form 3-B Tax Invoice & Receipt
+- **Government Compliance**: Follows the Ministry of Chemicals & Fertilizers standard format for subsidized sale records.
+- **Central Subsidy Breakdown**: Explicit breakdown of Gross Market Value, Central Government Direct Subsidy, and Farmer Net Payable Amount.
+- **Cryptographic QR Code**: Encodes transaction timestamp, PFMS voucher ID, order hash, and GST registration number.
+- **One-Click Print & PDF Export**: Instant printable receipt for farmer accounting and local PACS verification.
+
+---
+
+### 5. 🌾 Farmer Digital Gate Pass & Mandi Queuing
+- **MSP Crop Token Generation**: Farmers book guaranteed delivery slots to prevent physical Mandi congestion during harvest peaks.
+- **QR Gate Pass**: Encodes farmer registration number, crop type (Wheat, Paddy, Mustard, Soybean), estimated weight, and designated entry gate.
+- **Multi-Channel Dispatch**: Direct print pass, instant SMS confirmation, and WhatsApp PDF delivery.
+
+---
+
+### 6. 🌱 Subsidized Agri-Inputs Store (PMKSK & IFFCO)
+- **Subsidized Price Assurance**: Neem-Coated Urea (₹266.50 / 45kg bag), DAP (₹1,350 / 50kg bag), MOP, Bio-Fertilizers.
+- **Aadhaar-Linked Quota Enforcement**: Protects against hoarding by enforcing landholding-based purchase limits.
+- **Interactive Cart & Checkout**: Real-time subsidy calculation during order assembly.
+
+---
+
+### 7. ⚖️ Mandi Terminal Operations & Automated Weighbridge
+- **Weighbridge Integration**: Gross weight and tare weight capture with automatic net crop weight determination.
+- **Quality Inspection & Deductions**: Moisture content percentage calculation with automated standard moisture deduction rules.
+- **MSP Rate Calculation**: Multiplies certified net weight by official Government MSP rates for instantaneous payment clearance.
+
+---
+
+### 8. 📺 Real-Time Public Yard Display Board
+- **Transparency for Farmers**: Full-screen public display board designed for Mandi yard LED screens.
+- **Live Token Queue Status**: Shows Calling Token, In-Weighing Token, and Waiting Count.
+- **Daily MSP Rate Ticker**: Real-time ticker for Wheat, Paddy, Cotton, Mustard, and Pulses.
+- **Bilingual Announcements**: English and हिन्दी display mode with audio chime alerts.
+
+---
+
+### 9. 🐘 PostgreSQL 16 Enterprise Relational Schema
+- **Production DDL (`database/schema.sql`)**: Robust enterprise database structure with constraints, foreign keys, triggers, and indexes.
+- **Live Telemetry Ribbon**: Real-time connection indicator in the portal header verifying database responsiveness.
+
+---
+
+### 10. 📶 Offline-First PWA Synchronization
+- **Rural Connectivity Architecture**: Operates seamlessly in intermittent or zero-connectivity village environments.
+- **Synchronization Queue**: Staged orders, weighbridge logs, and gate passes are stored locally in IndexedDB and automatically synced once 4G/Wi-Fi is re-established.
+
+---
+
+## 💻 Technology Stack Matrix
+
+| Layer | Technologies | Architectural Function |
 | :--- | :--- | :--- |
-| **Frontend** | React 19, JavaScript (ES6+), Vite 8 | Reactive component tree, Context API state management |
-| **Styling** | Vanilla CSS Design System | Sleek dark command center theme, radar sweeps, glassmorphic panels |
-| **Visuals** | HTML5 Canvas API | 60 FPS spatial density heatmaps, flow particles, CCTV reticles |
-| **Audio** | Web Audio API & SpeechSynthesis | Procedural emergency siren synthesis and automated PA voice broadcast |
-| **Backend** | Python 3.14, FastAPI, Uvicorn | High-concurrency ASGI REST server and WebSocket streaming hub |
-| **AI / ML** | PyTorch 2.x, NumPy, Scikit-Learn | Tensor density mapping, directional turbulence, LSTM time-series forecast |
-| **Database** | Firebase Firestore (`firebase-admin`) | Digital pass registry, alerts, zone states, with in-memory emulator fallback |
-| **Version Control** | Git / GitHub | Remote repository at `bhavingarg121-glitch/KisanSetu` (Collaborator: `sanchitamoundekar13`) |
+| **Frontend Framework** | React 18, React DOM | Declarative component hierarchy and Context API global state |
+| **Styling & Theme** | Tailwind CSS CDN | High-performance GovTech design system with high-contrast accessibility |
+| **Icons & Media** | Lucide React | Clean, scalable SVG icons for agricultural and financial indicators |
+| **QR Generation** | QRCode.js / SVG Canvas | Instant rendering of UPI and Gate Pass cryptographic QR codes |
+| **Logistics Visuals** | SVG Vector Canvas | Lightweight, GPU-accelerated interactive fleet route map |
+| **Backend API** | Node.js, Express.js | High-throughput REST API serving orders, payments, and mandi queues |
+| **Database** | PostgreSQL 16.2 | ACID-compliant relational storage for financial orders and audit trails |
+| **Deployment** | GitHub Pages / Vercel | Zero-configuration continuous delivery via GitHub Actions |
 
 ---
 
-## 📐 Mathematical & Algorithmic Formulation
+## 🗄️ Database Schema & Data Models
 
-### 1. Stampede Risk Index (SRI)
-The Stampede Risk Index is calculated continuously:
+The relational schema is defined in [`database/schema.sql`](database/schema.sql) and initialized with seed data in [`database/seed.sql`](database/seed.sql):
 
-$$SRI = 0.40 \cdot S_{\text{density}} + 0.25 \cdot S_{\text{turbulence}} + 0.20 \cdot S_{\text{stagnation}} + 0.15 \cdot S_{\text{surge}}$$
+```mermaid
+erDiagram
+    FARMERS ||--o{ AGRI_INPUT_ORDERS : places
+    FARMERS ||--o{ MANDI_APPOINTMENTS : books
+    AGRI_INPUT_ORDERS ||--|{ ORDER_ITEMS : contains
+    AGRI_INPUT_ORDERS ||--|| PAYMENT_TRANSACTIONS : settles
+    AGRI_INPUT_ORDERS ||--o{ LOGISTICS_DISPATCHES : tracks
+    MANDI_APPOINTMENTS ||--o{ WEIGHBRIDGE_LOGS : records
 
-Where:
-- $S_{\text{density}} = \text{clamp}\left(\frac{\rho - 1.0}{4.0}, 0, 1\right) \times 100$ ($\rho$ in people/$m^2$)
-- $S_{\text{turbulence}} = \text{clamp}(\tau, 0, 1) \times 100$ ($\tau$ = cross-directional angular variance)
-- $S_{\text{stagnation}} = \text{clamp}\left(\frac{1.2 - v}{1.0}, 0, 1\right) \times 100$ ($v$ = walking speed in $m/s$)
-- $S_{\text{surge}} = \text{clamp}\left(\frac{R_{in} - 1.0}{1.5}, 0, 1\right) \times 100$ ($R_{in}$ = inflow surge ratio)
+    FARMERS {
+        uuid id PK
+        varchar aadhaar_hash
+        varchar full_name
+        varchar phone
+        varchar district
+        varchar state
+        numeric landholding_acres
+    }
 
-### 2. Dynamic Congestion-Penalized Evacuation Routing
-The shortest evacuation path through venue graph $G = (V, E)$ is computed by weighting edge costs dynamically:
+    AGRI_INPUT_ORDERS {
+        varchar order_id PK
+        uuid farmer_id FK
+        numeric total_gross_amount
+        numeric total_subsidy_amount
+        numeric net_payable_amount
+        order_status_enum status
+        timestamp created_at
+    }
 
-$$C(u, v) = C_{\text{base}}(u, v) \times \left(1.0 + \left(\frac{\rho_v}{2.0}\right)^2\right)$$
+    PAYMENT_TRANSACTIONS {
+        varchar txn_id PK
+        varchar order_id FK
+        numeric amount_paid
+        payment_mode_enum payment_mode
+        payment_status_enum payment_status
+        varchar reference_no
+        timestamp paid_at
+    }
 
----
-
-## 📁 Directory Structure
-
-```
-CrowdIQ/
-├── backend/                              # Python FastAPI & AI/ML Backend
-│   ├── ai_engine/
-│   │   ├── density_model.py              # PyTorch Gaussian density & SRI model
-│   │   ├── evacuation_router.py          # Dynamic Dijkstra wayfinding algorithm
-│   │   └── predictive_lstm.py            # PyTorch LSTM crowd forecaster
-│   ├── firebase_config.py                # Firebase Firestore & emulator fallback
-│   ├── main.py                           # FastAPI REST endpoints & WebSocket
-│   └── requirements.txt                  # Python dependencies
-├── src/                                  # React 19 Frontend
-│   ├── components/
-│   │   ├── attendee/                     # Mobile attendee portal & route finder
-│   │   ├── dashboard/                    # MetricsGrid, HeatmapCanvas, CameraFeedGrid, AlertsPanel
-│   │   ├── emergency/                    # EmergencyBroadcast, IncidentDispatch
-│   │   ├── layout/                       # Navbar, Sidebar
-│   │   ├── prediction/                   # PeakForecastChart, BottleneckAnalyzer
-│   │   ├── routing/                      # SmartRouteMap, ZoneTrafficTable
-│   │   ├── sandbox/                      # SurgeSimulator chaos testing
-│   │   └── ticketing/                    # PassGenerator, QRScannerTerminal
-│   ├── context/
-│   │   ├── AuthContext.jsx               # Role-based access control
-│   │   └── CrowdDataContext.jsx         # Real-time telemetry, state & API sync
-│   ├── services/
-│   │   ├── apiService.js                 # REST & WebSocket client to FastAPI
-│   │   ├── qrService.js                  # QR code generation & validator
-│   │   ├── soundAlerts.js                # Web Audio sirens & Speech PA
-│   │   └── stampedeRiskEngine.js         # Client-side SRI heuristics
-│   ├── App.jsx                           # Master application component
-│   ├── index.css                         # Command center styling & design system
-│   └── main.jsx                          # React entrypoint
-├── index.html                            # Application shell with metadata
-├── package.json                          # Node dependencies & build scripts
-├── vite.config.js                        # Vite configuration
-├── OPR.md                                # Operational Project Report
-├── TRD.md                                # Technical Requirements Document
-└── README.md                             # Project documentation
+    LOGISTICS_DISPATCHES {
+        uuid id PK
+        varchar order_id FK
+        varchar driver_name
+        varchar vehicle_no
+        varchar delivery_otp
+        numeric current_lat
+        numeric current_lng
+        int eta_minutes
+    }
 ```
 
 ---
 
-## 💻 Getting Started & Installation
+## 🔌 REST API Endpoints
 
-### Prerequisites
-- **Node.js**: `v20.0+`
-- **Python**: `v3.10+` (Verified on `Python 3.14`)
-- **Git**: `v2.40+`
-
-### 1. Clone Repository
-```powershell
-git clone https://github.com/bhavingarg121-glitch/KisanSetu.git
-cd KisanSetu
-```
-
-### 2. Start Python FastAPI Backend (Port 8000)
-```powershell
-# Install dependencies
-python -m pip install -r backend/requirements.txt
-
-# Start FastAPI server with Uvicorn
-python -m uvicorn backend.main:app --host 127.0.0.1 --port 8000
-```
-- **API Root**: `http://127.0.0.1:8000/`
-- **Interactive Swagger Docs**: `http://127.0.0.1:8000/docs`
-- **WebSocket Stream**: `ws://127.0.0.1:8000/ws/telemetry`
-
-### 3. Start React Frontend (Port 5173)
-```powershell
-# In a separate terminal:
-npm.cmd install
-npm.cmd run dev
-```
-Open **`http://localhost:5173/`** in your browser to access the live CrowdIQ Command Operations Center.
-
----
-
-## ☁️ Firebase Configuration
-
-By default, the backend runs with an integrated **in-memory Firestore emulator** for instant zero-config testing.
-To connect to your live Google Cloud Firebase project:
-1. Open the [Firebase Console](https://console.firebase.google.com/) and go to **Project Settings > Service accounts**.
-2. Click **Generate new private key** and download the JSON file.
-3. Save it as `backend/serviceAccountKey.json` (or set the environment variable `FIREBASE_CREDENTIALS_PATH`).
-4. Restart FastAPI—the backend will automatically connect to live cloud Firestore.
-
----
-
-## 📡 REST API & WebSocket Documentation
-
-### REST Endpoints (Port 8000)
+The included backend REST server provides comprehensive endpoints documented below:
 
 | Method | Endpoint | Description |
 | :--- | :--- | :--- |
-| `GET` | `/` | Health check & verified tech stack summary |
-| `GET` | `/api/telemetry` | Live headcount, occupancy %, flow velocities, and composite SRI |
-| `GET` | `/api/zones` | Zone-by-zone density, flow speed, and evacuation priorities |
-| `GET` | `/api/predictions/peak` | PyTorch LSTM hourly forecast curve (16:00–00:00) |
-| `GET` | `/api/routing/optimal` | Dijkstra dynamic evacuation path bypassing choked nodes |
-| `POST` | `/api/tickets/generate` | Issue cryptographic QR pass and store in Firebase |
-| `POST` | `/api/tickets/validate` | Verify pass, enforce single-use, and detect duplicates |
-| `POST` | `/api/emergency/broadcast` | Trigger PA voice broadcast, klaxon siren, and Firebase alert log |
-| `POST` | `/api/simulation/surge` | Inject synthetic crowd surge into PyTorch engine |
-
-### Real-Time WebSocket Telemetry
-- **URL**: `ws://127.0.0.1:8000/ws/telemetry`
-- **Cadence**: Streams live telemetry ticks every 2.0 seconds directly into the React UI.
+| `GET` | `/api/orders` | Retrieve list of farmer fertilizer orders with optional status filter |
+| `GET` | `/api/orders/:id` | Get detailed record of a specific procurement order and items |
+| `POST` | `/api/orders` | Create a new fertilizer purchase order with Aadhaar quota validation |
+| `POST` | `/api/orders/:id/pay` | Process payment settlement (UPI, KCC, e-RUPI, NetBanking, COD) |
+| `GET` | `/api/orders/:id/status`| Poll live dispatch and logistics tracking status |
+| `GET` | `/api/postgres/status` | Health check endpoint returning live PostgreSQL connection telemetry |
+| `GET` | `/api/mandi/tokens` | Get live Mandi queue tokens and gate pass bookings |
+| `POST` | `/api/mandi/weigh` | Record weighbridge gross/tare metrics and calculate MSP payout |
 
 ---
 
-## 👥 Role-Based Access Control (RBAC)
+## 📁 Repository Structure
 
-| Role | Title | Access Scope |
-| :--- | :--- | :--- |
-| `super_admin` | **Incident Commander** | Full telemetry, threshold overrides, emergency klaxon activation, and tactical dispatch |
-| `security_guard` | **Field Security Officer** | Turnstile QR pass scanner, local sector alert feed, and incident acknowledgment |
-| `venue_director` | **Operations Executive** | Capacity analytics, revenue/attendance projections, and safety audit logging |
-| `attendee` | **Event Attendee** | Personal digital pass wallet, live safety advisories, and Safe Route Finder |
-
----
-
-## 🚀 Cloud Deployment Guide
-
-CrowdIQ includes pre-configured deployment files for zero-configuration publishing across all leading cloud providers:
-
-### 1. Vercel (Frontend - Recommended)
-- Import the GitHub repository [`bhavingarg121-glitch/KisanSetu`](https://github.com/bhavingarg121-glitch/KisanSetu).
-- Build Command: `npm run build`
-- Output Directory: `dist`
-- The included [`vercel.json`](vercel.json) automatically handles SPA rewrites and asset caching so 404 errors never occur.
-
-### 2. GitHub Pages (Automated via GitHub Actions)
-- Go to your GitHub repository **Settings > Pages**.
-- Under **Build and deployment > Source**, select **GitHub Actions**.
-- The included [`.github/workflows/deploy.yml`](.github/workflows/deploy.yml) will automatically build the Vite production bundle and deploy it with relative asset paths.
-
-### 3. Netlify / Cloudflare Pages
-- Connect repository.
-- Publish directory: `dist`
-- The included [`public/_redirects`](public/_redirects) routes all traffic to `index.html` with HTTP 200.
-
-### 4. Render / Railway (Fullstack or FastAPI Backend)
-- Deploy FastAPI Web Service with the included [`render.yaml`](render.yaml) or [`Procfile`](Procfile):
-  ```bash
-  uvicorn backend.main:app --host 0.0.0.0 --port $PORT
-  ```
-- Set `VITE_API_BASE_URL` in your frontend environment to connect it to your deployed backend. If no backend URL is set, the frontend operates autonomously in client-side AI simulation mode.
+```
+KisanSetu/
+├── SIH_AGRICULTURE.html          # Standalone single-file production web app (Open in any browser)
+├── index.html                    # Root web entrypoint for GitHub Pages deployment
+├── 404.html                      # Single Page Application rewrite fallback
+├── agriculture.html              # Dedicated mirror entrypoint
+├── kisansetu.html                # Branded alias entrypoint
+│
+├── database/                     # Enterprise Relational Database Layer
+│   ├── README.md                 # PostgreSQL installation and provisioning guide
+│   ├── schema.sql                # Complete PostgreSQL 16 DDL, triggers, and indexes
+│   └── seed.sql                  # Production seed data (orders, farmers, inventory)
+│
+├── server/                       # Node.js / Express Backend Layer
+│   ├── package.json              # Backend dependencies
+│   ├── server.js                 # Express server configuration
+│   ├── routes/
+│   │   └── api.js                # Order, payment, and mandi API routes
+│   └── services/
+│       ├── queueService.js       # Mandi queuing algorithm
+│       └── recommendationService.js # Crop and fertilizer advisory
+│
+├── public/                       # Static distribution assets
+│   ├── favicon.svg               # Emblem favicon
+│   └── _redirects                # Cloudflare/Netlify SPA rewrite rules
+│
+├── vite.config.js                # Build configuration with universal relative base
+├── package.json                  # Frontend scripts and tooling
+└── README.md                     # Comprehensive KisanSetu Project Documentation
+```
 
 ---
 
-## 📚 Project Documentation
+## 🚀 Installation & Local Setup
 
-- [**Operational Project Report (OPR.md)**](OPR.md): Full operational specification, disaster management SOPs, state transition diagrams, and deployment runbook.
-- [**Technical Requirements Document (TRD.md)**](TRD.md): In-depth software engineering architecture, mathematical derivations, data contracts, and non-functional requirement audits.
+### Option 1: Instant Run (Zero Dependencies)
+You do not need Node.js or PostgreSQL installed to test the complete user interface:
+1. Double click or open [`SIH_AGRICULTURE.html`](SIH_AGRICULTURE.html) directly in any web browser (Chrome, Edge, Firefox, Safari).
+2. The entire application runs client-side with all modules, interactive payments, and simulated live database telemetry.
 
 ---
 
-## 📄 License & Attribution
+### Option 2: Run with Vite Dev Server
+```powershell
+# 1. Clone the repository
+git clone https://github.com/bhavingarg121-glitch/KisanSetu.git
+cd KisanSetu
 
+# 2. Install dependencies
+npm install
+
+# 3. Start local development server
+npm run dev
+```
+Open **`http://localhost:5173/`** to view the live portal.
+
+---
+
+### Option 3: Full-Stack Execution with PostgreSQL
+```powershell
+# 1. Provision PostgreSQL Database
+psql -U postgres -d postgres -f database/schema.sql
+psql -U postgres -d postgres -f database/seed.sql
+
+# 2. Start Express API Backend (Port 5000)
+cd server
+npm install
+npm start
+
+# 3. Start Frontend in another terminal
+cd ..
+npm run dev
+```
+
+---
+
+## 🇮🇳 GovTech Compliance & Standards
+
+- **GIGW 3.0 (Guidelines for Indian Government Websites)**: Proper National Emblem positioning, bilingual language switch (English & हिन्दी), official typography, and high-contrast color palette.
+- **W3C WCAG 2.1 AA**: Full keyboard accessibility, descriptive ARIA attributes, and accessible font scaling.
+- **Direct Benefit Transfer (DBT) Bharat**: Compliant with Aadhaar-authenticated fertilizer subsidy disbursement standards.
+- **PFMS (Public Financial Management System)**: Compatible with Central Sector fertilizer subsidy accounting formats.
+
+---
+
+## 👥 Authors & Hackathon Team
+
+- **Repository**: [https://github.com/bhavingarg121-glitch/KisanSetu](https://github.com/bhavingarg121-glitch/KisanSetu)
+- **Collaborator**: `sanchitamoundekar13`
+- **Smart India Hackathon (SIH 2026)** — Ministry of Agriculture & Farmers Welfare Category
+
+---
+
+## 📜 License
 Distributed under the **MIT License**. See `LICENSE` for more information.
-
-**CrowdIQ** — Designed and built with Google DeepMind Antigravity Systems for proactive public safety and crowd crush prevention.
